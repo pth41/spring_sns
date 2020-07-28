@@ -1,0 +1,45 @@
+package org.pth.service;
+
+import org.pth.domain.UserVO;
+import org.pth.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+
+@Service
+@Log4j
+public class UserServiceImpl implements UserService {
+	
+	@Setter(onMethod_ = @Autowired)
+	private UserMapper mapper;
+	
+	@Override
+	public int register(UserVO vo) {
+		log.info("User_register...."+vo);
+		
+		return mapper.insert(vo);
+	}
+	
+	@Override
+	public UserVO get(Long user_no) {
+		log.info("User_get...."+user_no);
+		
+		return mapper.read(user_no);
+	}
+	
+	@Override
+	public int modify(UserVO vo) {
+		log.info("User_modify...."+vo);
+		
+		return mapper.update(vo);
+	}
+	
+	@Override
+	public int remove(Long user_no) {
+		log.info("User_remove...."+user_no);
+		
+		return mapper.delete(user_no);
+	}
+}
