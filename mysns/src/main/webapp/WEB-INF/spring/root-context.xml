@@ -29,6 +29,6 @@
 	
 	<mybatis-spring:scan base-package="org.pth.mapper"/>
 	
-	<context:component-scan base-package="org.pth.sns"></context:component-scan>
+	<context:component-scan base-package="org.pth.service"></context:component-scan>
 	
 </beans>
