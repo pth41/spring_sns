@@ -7,7 +7,8 @@ import lombok.Data;
 @Data
 public class PostVO {
 	private Long post_no;
-	private Long user_no;	//ÀÛ¼ºÀÚ
+	private Long user_no;
+	private String username;
 	private String content;
 	private Date regDate;
 	private Date modDate;
