@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.pth.mapper.PostMapper">
+	<insert id="insert">
+		insert into tbl_post (post_no, user_no, username, content)
+		values (seq_post.nextval, #{user_no}, #{username}, #{content})
+	</insert>
+	
+	<select id="read" resultType="org.pth.domain.PostVO">
+		select * from tbl_post where post_no = #{post_no}
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_post where post_no = #{post_no}
+	</delete>
+	
+	<update id="update">
+		update tbl_post
+		set
+			content = #{content},
+			modDate = sysdate
+		where
+			user_no = #{user_no}
+	</update>
+</mapper>
