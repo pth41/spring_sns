@@ -8,6 +8,15 @@
 		values (seq_post.nextval, #{user_no}, #{username}, #{content})
 	</insert>
 	
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="post_no" order="BEFORE" resultType="long">
+			select seq_post.nextval from dual
+		</selectKey>
+		
+		insert into tbl_post (post_no, user_no, username, content)
+		values (#{post_no}, #{user_no}, #{username}, #{content})
+	</insert>
+	
 	<select id="read" resultType="org.pth.domain.PostVO">
 		select * from tbl_post where post_no = #{post_no}
 	</select>
