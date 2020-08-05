@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.pth.mapper.UserMapper">
-	<resultMap type="org.pth.domain.AutoVO" id="authMAp">
+	<resultMap type="org.pth.domain.AuthVO" id="authMAp">
 		<result property="email" column="email"/>
 		<result property="auth" column="auth"/>
 	</resultMap>

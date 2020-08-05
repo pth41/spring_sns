@@ -10,7 +10,7 @@
     <title>Login</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="stylesheet/Login.css">
+    <link rel="stylesheet" href="/resources/css/authlogin.css">
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 
 
@@ -26,7 +26,7 @@
         <h2><c:out value="${error}"/></h2>
         <h2><c:out value="${logout}"/></h2>
 
-        <form action="/login" method="POST">
+        <form role="form" action="/login" method="POST">
 
             <input placeholder="전화번호, 사용자 이름 또는 이메일" type="text" name="username">
             <input placeholder="비밀번호" type="password" name="password">

@@ -31,7 +31,7 @@ public class CommonController {
 		}
 	}
 	
-	@GetMapping("/authlogout")
+	@GetMapping("/logout")
 	public void logoutGET() {
 		log.info("logout");
 	}

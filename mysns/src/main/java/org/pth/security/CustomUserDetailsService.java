@@ -21,9 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
 		log.warn("Load User By UserEmail : "+userEmail);
 		
-		UserMapper mapper;
-		
-		UserVO vo = null;
+		UserVO vo = userMapper.readByEmail(userEmail);
 		
 		log.warn("queried by user mapper: "+ vo);
 		

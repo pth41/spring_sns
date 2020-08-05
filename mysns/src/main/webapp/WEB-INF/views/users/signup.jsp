@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>signup</title>
-    <link rel="stylesheet" href="stylesheet/signup.css">
+    <link rel="stylesheet" href="/resources/css/signup.css">
 </head>
 
 <body>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="option">
-            <p>계정이 있으신가요? <a href="login.html">로그인</a></p>
+            <p>계정이 있으신가요? <a href="/authlogin">로그인</a></p>
         </div>
         <div class="otherapps">
             <p>Get the app.</p>
