@@ -3,6 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.pth.mapper.UserMapper">
+	<resultMap type="org.pth.domain.AutoVO" id="authMAp">
+		<result property="email" column="email"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
 	<insert id="insert">
 		insert into tbl_user (user_no, email, password, name, username)
 		values (seq_user.nextval, #{email}, #{password}, #{name}, #{username})
@@ -10,6 +15,14 @@
 	
 	<select id="read" resultType="org.pth.domain.UserVO">
 		select * from tbl_user where user_no = #{user_no}
+	</select>
+	
+	<select id="readByEamil" resultType="org.pth.domain.UserVO">
+		select
+			*
+		from
+			tbl_user
+		where email = #{email} 
 	</select>
 	
 	<delete id="delete">

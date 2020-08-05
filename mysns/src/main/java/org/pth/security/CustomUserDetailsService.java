@@ -1,6 +1,8 @@
 package org.pth.security;
 
+import org.pth.domain.UserVO;
 import org.pth.mapper.UserMapper;
+import org.pth.security.domain.CustomUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,9 +18,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 	private UserMapper userMapper;
 	
 	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		log.warn("Load User By UserName : "+userName);
+	public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
+		log.warn("Load User By UserEmail : "+userEmail);
 		
-		return null;
+		UserMapper mapper;
+		
+		UserVO vo = null;
+		
+		log.warn("queried by user mapper: "+ vo);
+		
+		return vo == null ? null : new CustomUser(vo);
 	}
 }

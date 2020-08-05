@@ -7,6 +7,8 @@ public interface UserMapper {
 	
 	public UserVO read(Long user_no);
 	
+	public UserVO readByEmail(String email);
+	
 	public int delete(Long user_no);
 	
 	public int update(UserVO vo);
