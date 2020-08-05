@@ -225,11 +225,11 @@
               <section class="card_section">
                   <div class="card">
                       <header class="user">
-                          <img class="profile_image" src="image/image_01.jpg" alt="404">
+                          <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">
                           <div class="user_name">username</div>
                       </header>
                       <div class="card_image">
-                          <img src="image/image_02.jpg" alt="404">
+                          <img src="/resources/image/image_02.jpg" alt="404">
                       </div>
                       <div class="info">
                           <div class="info_left">
@@ -254,11 +254,11 @@
 
                   <div class="card">
                       <header class="user">
-                          <img class="profile_image" src="image/image_01.jpg" alt="404">
+                          <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">
                           <div class="user_name">username</div>
                       </header>
                       <div class="card_image">
-                          <img src="image/image_02.jpg" alt="404">
+                          <img src="/resources/image/image_02.jpg" alt="404">
                       </div>
                       <div class="info">
                           <div class="info_left">
@@ -283,11 +283,11 @@
                   
                   <div class="card">
                       <header class="user">
-                          <img class="profile_image" src="image/image_02.jpg" alt="404">
+                          <img class="profile_image" src="/resources/image/image_02.jpg" alt="404">
                           <div class="user_name">username</div>
                       </header>
                       <div class="card_image">
-                          <img src="image/image_01.jpg" alt="404">
+                          <img src="/resources/image/image_01.jpg" alt="404">
                       </div>
                       <div class="info">
                           <div class="info_left">
@@ -315,7 +315,7 @@
               <div class="right_nav">
                   <div id="fixed_nav">
                       <div class="right_user">
-                          <img class="right_profile_image" src="image/image_01.jpg" alt="404">
+                          <img class="right_profile_image" src="/resources/image/image_01.jpg" alt="404">
                           <div class="user_name">username</div>
                       </div>
                       <div id="recommend">
