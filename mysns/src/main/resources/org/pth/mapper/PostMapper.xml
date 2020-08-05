@@ -33,4 +33,14 @@
 		where
 			user_no = #{user_no}
 	</update>
+	
+	<select id="getList" resultType="org.pth.domain.PostVO">
+	<![CDATA[
+		select
+			*
+		from tbl_post
+		where post_no > 0
+		order by post_no desc
+	]]>
+	</select>
 </mapper>

@@ -1,5 +1,7 @@
 package org.pth.service;
 
+import java.util.List;
+
 import org.pth.domain.PostVO;
 import org.pth.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +43,12 @@ public class PostServiceImpl implements PostService {
 		log.info("Post_remove...."+post_no);
 		
 		return mapper.delete(post_no);
+	}
+	
+	@Override
+	public List<PostVO> getList() {
+		log.info("Post_getList");
+		
+		return mapper.getList();
 	}
 }

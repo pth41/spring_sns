@@ -1,5 +1,7 @@
 package org.pth.service;
 
+import java.util.List;
+
 import org.pth.domain.PostVO;
 
 public interface PostService {
@@ -10,4 +12,6 @@ public interface PostService {
 	public int modify(PostVO vo);
 	
 	public int remove(Long post_no);
+	
+	public List<PostVO> getList();
 }

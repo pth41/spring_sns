@@ -1,5 +1,7 @@
 package org.pth.mapper;
 
+import java.util.List;
+
 import org.pth.domain.PostVO;
 
 public interface PostMapper {
@@ -10,4 +12,6 @@ public interface PostMapper {
 	public int delete(Long post_no);
 	
 	public int update(PostVO vo);
+	
+	public List<PostVO> getList();
 }
