@@ -29,9 +29,9 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		
 		log.warn("ROLE NAMES: " + roleNames);
 		
-		//ROLE_USER 권한을 가질 시 로그인 후 /users 로 이동
+		//ROLE_USER 권한을 가질 시 로그인 후 /posts/main 로 이동
 		if(roleNames.contains("ROLE_USER")) {
-			response.sendRedirect("/users");
+			response.sendRedirect("/posts/main");
 			return;
 		}
 		
