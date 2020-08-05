@@ -23,8 +23,8 @@
     <div class="login">
 
         <h1>PTHgram</h1>
-        <h2><c:out value="${error}"/></h2>
-        <h2><c:out value="${logout}"/></h2>
+        <h3><c:out value="${error}"/></h3>
+        <h3><c:out value="${logout}"/></h3>
 
         <form role="form" action="/login" method="POST">
 
