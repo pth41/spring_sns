@@ -1,9 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>Login • Instagram</title>
+    <title>Login</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="stylesheet/Login.css">
@@ -19,14 +23,17 @@
     <div class="login">
 
         <h1>PTHgram</h1>
+        <h2><c:out value="${error}"/></h2>
+        <h2><c:out value="${logout}"/></h2>
 
-        <form action="" method="POST">
+        <form action="/login" method="POST">
 
             <input placeholder="전화번호, 사용자 이름 또는 이메일" type="text" name="username">
             <input placeholder="비밀번호" type="password" name="password">
 
             <input type="submit" value="로그인" /><br>
-
+            
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         </form>
 
         <div class="divider"><b>또는</b></div>
