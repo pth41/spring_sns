@@ -25,13 +25,13 @@
 	
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="customUserDetailsService">
-			<security:jdbc-user-service data-source-ref="dataSource"/>
+			<!-- <security:jdbc-user-service data-source-ref="dataSource"/> -->
 			
 			<security:password-encoder ref="bcryptPasswordEncoder"/>
 			
-			<security:user-service>
+			<!-- <security:user-service>
 				<security:user name="user" password="{noop}user" authorities="ROLE_USER"/>
-			</security:user-service>
+			</security:user-service> -->
 		</security:authentication-provider>
 	</security:authentication-manager>
 
