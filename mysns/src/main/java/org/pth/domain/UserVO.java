@@ -1,6 +1,7 @@
 package org.pth.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -14,4 +15,7 @@ public class UserVO {
 	private String phoneNum;
 	private Date regDate;
 	private String img_filename;
+	
+	private boolean enabled;
+	private List<AuthVO> authList;
 }
