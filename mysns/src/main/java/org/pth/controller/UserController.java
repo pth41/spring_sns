@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -27,6 +28,11 @@ public class UserController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private UserService service;
+	
+	@GetMapping("/signup")
+	public ModelAndView signup() throws Exception {
+		return new ModelAndView("users/signup");
+	}
 	
 	@PostMapping(value = "/new",
 			consumes = "application/json",
