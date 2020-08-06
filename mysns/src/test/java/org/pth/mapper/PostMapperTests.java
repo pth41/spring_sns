@@ -25,7 +25,7 @@ public class PostMapperTests {
 	
 	@Test
 	public void testCreate() {
-		Long tergetUser_no = 10L;
+		Long tergetUser_no = 11L;
 		PostVO vo = new PostVO();
 		vo.setContent("»õ ±Û");
 		vo.setUser_no(tergetUser_no);
@@ -36,7 +36,7 @@ public class PostMapperTests {
 	
 	@Test
 	public void testRead() {
-		Long tergetPost_no = 1L;
+		Long tergetPost_no = 21L;
 		
 		PostVO vo = mapper.read(tergetPost_no);
 		
@@ -45,18 +45,18 @@ public class PostMapperTests {
 	
 	@Test
 	public void testDelete() {
-		Long tergetPost_no = 1L;
+		Long tergetPost_no = 22L;
 		
 		mapper.delete(tergetPost_no);
 	}
 	
 	@Test
 	public void testUpdate() {
-		Long tergetPost_no = 1L;
+		Long tergetPost_no = 21L;
 		
 		PostVO vo = mapper.read(tergetPost_no);
 		
-		vo.setContent("Update Content ");
+		vo.setContent("Update Content");
 		
 		int count = mapper.update(vo);
 		
