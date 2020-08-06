@@ -251,35 +251,6 @@
                           </form>
                       </div>
                   </div>
-
-                  <div class="card">
-                      <header class="user">
-                          <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">
-                          <div class="user_name">username</div>
-                      </header>
-                      <div class="card_image">
-                          <img src="/resources/image/image_02.jpg" alt="404">
-                      </div>
-                      <div class="info">
-                          <div class="info_left">
-                              <i class="far fa-heart"></i>
-                              <i class="far fa-comment"></i>
-                              <i class="fas fa-upload"></i>
-                          </div>
-                          <div class="info_right">
-                              <i class="far fa-bookmark"></i>
-                          </div>
-                      </div>
-                      <div class="comment">
-                          comment1<br>
-                          comment2<br>
-                      </div>
-                      <div class="comment_form">
-                          <form action="">
-                              <input type="text" placeholder="댓글 입력...">
-                          </form>
-                      </div>
-                  </div>
                   
                   <div class="card">
                       <header class="user">
