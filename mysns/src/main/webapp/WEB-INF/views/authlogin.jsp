@@ -52,7 +52,7 @@
 
     <div class="infobox">
 
-        <p>계정이 없으신가요? <a href="signup.html">가입하기</a></p>
+        <p>계정이 없으신가요? <a href="/users/signup">가입하기</a></p>
 
     </div>
 
@@ -76,7 +76,7 @@
             <a href="https://www.instagram.com/directory/profiles/">PROFILES</a>
             <a href="https://www.instagram.com/directory/hashtags/">HASHTAGS</a>
             <a href="">LANGUAGE</a>
-            <span>© 2020 INSTAGRAM</span>
+            <span>© 2020 PTHGRAM</span>
         </p>
     </div>
 
