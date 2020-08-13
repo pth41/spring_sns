@@ -13,7 +13,9 @@
 	
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/authlogin" access="permitAll"/>
-		<security:intercept-url pattern="/users" access="hasRole('ROLE_USER')"/>
+		<security:intercept-url pattern="/users/signup" access="permitAll"/>
+		<security:intercept-url pattern="/posts/**" access="hasRole('ROLE_USER')"/>
+		<security:intercept-url pattern="/users/**" access="hasRole('ROLE_USER')"/>
 		
 		<security:form-login login-page="/authlogin" authentication-success-handler-ref="customLoginSuccess"/>
 		<security:logout logout-url="/logout" invalidate-session="true"/>
