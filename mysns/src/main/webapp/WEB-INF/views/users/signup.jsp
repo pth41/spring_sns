@@ -9,6 +9,40 @@
     <link rel="stylesheet" href="/resources/css/signup.css">
 </head>
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<!-- ajax_module -->
+<script src="/resources/js/user.js"></script>
+
+<script>
+	$(document).ready(function(){
+		console.log(userService);
+		
+		var container = $(".container");
+		var inputEmail = container.find("input[name='email']");
+		var inputName = container.find("input[name='name']");
+		var inputUsername = container.find("input[name='username']");
+		var inputPassword = container.find("input[name='password']");
+		
+		var registerBtn = $("#registerBtn");
+		
+		registerBtn.on("click", function(e) {
+			var user = {
+					email : inputEmail.val(),
+					name : inputName.val(),
+					username : inputUsername.val(),
+					password : inputPassword.val()
+				};
+			userService.add(user, function(result){
+				alert("RESULT: " + result);
+				
+				location.replace('/authlogin')
+			});
+		});
+	});
+</script>
+
 <body>
     <main>
         <div class="page">
@@ -24,11 +58,11 @@
             </div>
             <div class="container">
                 <form action="">
-                    <input type="text" placeholder="휴대폰 번호 또는 이메일 주소">
-                    <input type="text" placeholder="성명">
-                    <input type="text" placeholder="사용자 이름">
-                    <input type="password" placeholder="비밀번호">
-                    <button>가입</button>
+                    <input type="text" name="email" placeholder="이메일 주소">
+                    <input type="text" name="name" placeholder="성명">
+                    <input type="text" name="username" placeholder="사용자 이름">
+                    <input type="password" name="password" placeholder="비밀번호">
+                    <button id="registerBtn" type="button">가입</button>
                 </form>
 
                 <ul>
