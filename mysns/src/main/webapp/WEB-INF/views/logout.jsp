@@ -7,7 +7,7 @@
 <title>Logout</title>
 </head>
 <body>
-	<h1>Logout Page</h1>
+	<h1>로그아웃 처리</h1>
 	
 	<form action="/logout" method="post">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
