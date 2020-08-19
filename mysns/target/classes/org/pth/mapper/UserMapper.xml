@@ -4,8 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.pth.mapper.UserMapper">
 	<resultMap type="org.pth.domain.UserVO" id="userMap">
-		<id property="user_no" column="user_no"/>
-		<result property="email" column="email"/>
+		<id property="email" column="email"/>
 		<result property="password" column="password"/>
 		<result property="name" column="name"/>
 		<result property="username" column="username"/>
@@ -23,20 +22,16 @@
 		values (seq_user.nextval, #{email}, #{password}, #{name}, #{username})
 	</insert>
 	
-	<select id="read" resultMap="userMap">
-		select
-			mem.user_no, email, password, name, username, enabled, regDate, auth
-		from
-			tbl_user mem LEFT OUTER JOIN tbl_user_auth on mem.user_no = auth.user_no
-		where mem.user_no = #{user_no}
+	<select id="read" resultType="org.pth.domain.UserVO">
+		select * from tbl_post where user_no = #{user_no}
 	</select>
 	
-	<select id="readByEamil" resultType="org.pth.domain.UserVO">
+	<select id="readByEamil" resultMap="userMap">
 		select
-			*
+			mem.email, password, name, username, enabled, regDate, auth
 		from
-			tbl_user
-		where email = #{email} 
+			tbl_user mem LEFT OUTER JOIN tbl_user_auth on mem.email = auth.email
+		where mem.email = #{email}
 	</select>
 	
 	<delete id="delete">
