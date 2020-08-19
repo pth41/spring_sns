@@ -61,11 +61,22 @@ public class UserMapperTests {
 	
 	@Test
 	public void testRead() {
-		Long tergetUser_no = 4L;
+		Long tergetUser_no = 23L;
 		
 		UserVO vo = mapper.read(tergetUser_no);
 		
 		log.info(vo);
+	}
+	
+	@Test
+	public void tesetReadByEmail() {
+		String email = "tester";
+		
+		UserVO vo = mapper.readByEmail(email);
+		
+		log.info(vo);
+		
+		vo.getAuthList().forEach(authVO -> log.info(authVO));
 	}
 	
 	@Test
