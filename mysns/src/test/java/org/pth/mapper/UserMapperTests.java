@@ -2,10 +2,12 @@ package org.pth.mapper;
 
 import java.util.stream.IntStream;
 
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.pth.domain.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -13,13 +15,19 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({
+		"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+		"file:src/main/webapp/WEB-INF/spring/security-context.xml"
+})
 @Log4j
 public class UserMapperTests {
 	
 	@Setter(onMethod_ = @Autowired)
 	private UserMapper mapper;
 	
+	@Setter(onMethod_ = @Autowired)
+	private PasswordEncoder pwencoder;
+
 	@Test
 	public void testMapper() {
 		log.info(mapper);
@@ -37,6 +45,18 @@ public class UserMapperTests {
 			
 			mapper.insert(vo);
 		});
+	}
+	
+	@Test
+	public void testInsertUser() {
+		UserVO vo = new UserVO();
+		
+		vo.setName("테스터");
+		vo.setUsername("테스터");
+		vo.setEmail("tester");
+		vo.setPassword(pwencoder.encode("1234"));
+		
+		mapper.insert(vo);
 	}
 	
 	@Test
