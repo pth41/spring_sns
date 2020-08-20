@@ -44,16 +44,17 @@
 	<update id="update">
 		update tbl_user
 		set
-			<choose>
+			<!-- <choose>
 				<when test="phoneNum != null">
 					phoneNum = #{phoneNum},
 				</when>
 				<otherwise>
 					phoneNum = null,
 				</otherwise>
-			</choose>
+			</choose> -->
 			name = #{name},
-			username = #{username}
+			username = #{username},
+			phoneNum = #{phoneNum}
 		where
 			user_no = #{user_no}
 	</update>
