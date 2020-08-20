@@ -58,7 +58,38 @@
 	<script src="/resources/js/user.js"></script>
 	
     <script>
-    	
+		$(document).ready(function(){
+			console.log(userService);
+			
+			$("input").filter("[value=null]").val(""); //input null 필터
+			
+			var container = $(".container");
+			var inputUserno = container.find("input[name='user_no']");
+			var inputEmail = container.find("input[nmae='email']");
+			var inputName = container.find("input[name='name']");
+			var inputUsername = container.find("input[name='username']");
+			var inputPhoneNum = container.find("input[name='phoneNum']");
+			var inputPassword = container.find("input[name='password']");
+			var inputPasswordConfirm = container.find("input[name='password_confirm']");
+			
+			var modifyBtn = $("#modifyBtn");
+			
+			modifyBtn.on("click", function(e) {
+					var user = {
+							user_no : Number(23),
+							name : inputName.val(),
+							username : inputUsername.val(),
+							phoneNum : inputPhoneNum.val()
+						};
+					userService.update(user, function(result){
+						alert("RESULT: " + result);
+						
+						location.replace('/edit')
+					});
+			});
+			
+			
+		});
     </script>
 </head>
 <div class="container">
@@ -82,74 +113,51 @@
           <i class="fa fa-coffee"></i>
           This is an <strong>.alert</strong>. Use this to show important messages to the user.
         </div>
-        <h3>Personal info</h3>
-        
+        <h3>프로필 정보</h3>
+        <input type="text" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
         <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-lg-3 control-label">이름:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value='<sec:authentication property="principal.user.name"/>'>
+              <input class="form-control" type="text" name="name" value='<sec:authentication property="principal.user.name"/>'>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">전화번호:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value='<sec:authentication property="principal.user.phoneNum"/>'>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Company:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="">
+              <input class="form-control" type="text" name="phoneNum" value='<sec:authentication property="principal.user.phoneNum"/>'>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value='<sec:authentication property="principal.user.email"/>'>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Time Zone:</label>
-            <div class="col-lg-8">
-              <div class="ui-select">
-                <select id="user_time_zone" class="form-control">
-                  <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                  <option value="Alaska">(GMT-09:00) Alaska</option>
-                  <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                  <option value="Arizona">(GMT-07:00) Arizona</option>
-                  <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                  <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                  <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                  <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                </select>
-              </div>
+              <input class="form-control" type="text" name="email" value='<sec:authentication property="principal.user.email"/>'>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">사용자이름:</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" value='<sec:authentication property="principal.user.username"/>'>
+              <input class="form-control" type="text" name="username" value='<sec:authentication property="principal.user.username"/>'>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">비밀번호:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value=''>
+              <input class="form-control" type="password" name="password" value=''>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">비밀번호 확인:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value=''>
+              <input class="form-control" type="password" name="password_confirm" value=''>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="button" class="btn btn-primary" value="Save Changes">
+              <input id="modifyBtn" type="button" class="btn btn-primary" value="수정">
               <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
+              <input type="reset" class="btn btn-default" value="취소">
             </div>
           </div>
         </form>
