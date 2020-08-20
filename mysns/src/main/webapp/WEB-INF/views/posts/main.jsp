@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!doctype html>
 <html>
@@ -227,7 +228,7 @@
                   <div class="card">
                       <header class="user">
                           <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">
-                          <div class="user_name">username</div>
+                          <div class="user_name"><sec:authentication property="principal.user.username"/></div>
                       </header>
                       <div class="card_image">
                           <img src="/resources/image/image_02.jpg" alt="404">
@@ -256,7 +257,7 @@
                   <div class="card">
                       <header class="user">
                           <img class="profile_image" src="/resources/image/image_02.jpg" alt="404">
-                          <div class="user_name">username</div>
+                          <div class="user_name"><sec:authentication property="principal.user.username"/></div>
                       </header>
                       <div class="card_image">
                           <img src="/resources/image/image_01.jpg" alt="404">
@@ -288,7 +289,7 @@
                   <div id="fixed_nav">
                       <div class="right_user">
                           <img class="right_profile_image" src="/resources/image/image_01.jpg" alt="404">
-                          <div class="user_name">username</div>
+                          <div class="user_name"><sec:authentication property="principal.user.username"/></div>
                       </div>
                       <div id="recommend">
                           회원님을 위한 추천
