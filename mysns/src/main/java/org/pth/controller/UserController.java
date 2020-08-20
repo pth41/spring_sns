@@ -34,6 +34,11 @@ public class UserController {
 		return new ModelAndView("users/signup");
 	}
 	
+	@GetMapping("/edit")
+	public ModelAndView edit() throws Exception {
+		return new ModelAndView("users/edit");
+	} 
+	
 	@PostMapping(value = "/new",
 			consumes = "application/json",
 			produces = { MediaType.TEXT_PLAIN_VALUE })
