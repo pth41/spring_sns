@@ -16,6 +16,21 @@
 <script src="/resources/js/user.js"></script>
 
 <script>
+	function check() {
+		var formObj = document.getElementById("regForm");
+		var email = formObj.email.value;
+		var name = formObj.name.value;
+		var username = formObj.username.value;
+		var password = formObj.password.value;
+		
+		if(!email || !name || !username || !password){
+			alert('모든 필드를 입력하세요.');
+			return false;
+		}
+		
+		return true;
+	}
+	
 	$(document).ready(function(){
 		console.log(userService);
 		
@@ -28,17 +43,19 @@
 		var registerBtn = $("#registerBtn");
 		
 		registerBtn.on("click", function(e) {
-			var user = {
-					email : inputEmail.val(),
-					name : inputName.val(),
-					username : inputUsername.val(),
-					password : inputPassword.val()
-				};
-			userService.add(user, function(result){
-				alert("RESULT: " + result);
-				
-				location.replace('/authlogin')
-			});
+			if(check()){
+				var user = {
+						email : inputEmail.val(),
+						name : inputName.val(),
+						username : inputUsername.val(),
+						password : inputPassword.val()
+					};
+				userService.add(user, function(result){
+					alert("RESULT: " + result);
+					
+					location.replace('/authlogin')
+				});
+			}
 		});
 	});
 </script>
@@ -57,7 +74,7 @@
                 </div>
             </div>
             <div class="container">
-                <form action="">
+                <form id="regForm" action="">
                     <input type="text" name="email" placeholder="이메일 주소">
                     <input type="text" name="name" placeholder="성명">
                     <input type="text" name="username" placeholder="사용자 이름">
