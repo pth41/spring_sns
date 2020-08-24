@@ -25,7 +25,13 @@ public class UserServiceImpl implements UserService {
 		
 		vo.setPassword(pwencoder.encode(vo.getPassword())); //password encoder Ã³¸®
 		
-		return mapper.insert(vo);
+		int insertCount = mapper.insert(vo);
+		
+		if(insertCount == 1) {
+			mapper.insertAuth(vo.getEmail(), "ROLE_USER");
+		}
+		
+		return insertCount;
 	}
 	
 	@Override
