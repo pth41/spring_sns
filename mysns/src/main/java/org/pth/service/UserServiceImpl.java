@@ -1,5 +1,6 @@
 package org.pth.service;
 
+import org.pth.domain.AuthVO;
 import org.pth.domain.UserVO;
 import org.pth.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
 		int insertCount = mapper.insert(vo);
 		
 		if(insertCount == 1) {
-			mapper.insertAuth(vo.getEmail(), "ROLE_USER");
+			mapper.insertAuth(new AuthVO(vo.getEmail(), "ROLE_USER"));
 		}
 		
 		return insertCount;
