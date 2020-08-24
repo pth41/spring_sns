@@ -33,6 +33,10 @@
               font-family: 'Sriracha', cursive;
           }
           
+          a{
+              color: black; text-decoration: none;
+          }
+          
           i{
               font-size: 1.5rem;
               margin: 1rem;
@@ -203,7 +207,7 @@
   <body>
       <div class="nav_container">
           <div class="left">
-               <i id="insta_icon" class="fab fa-instagram"></i><h2 id="pthgram">Pthgram</h2>
+               <i id="insta_icon" class="fab fa-instagram"></i><h2 id="pthgram"><a href="/posts/main">Pthgram</a></h2>
           </div>
           
           <div class="search">
@@ -216,7 +220,7 @@
           </div>
           
           <div class="right">
-              <i class="fas fa-home"></i>
+              <a href="/posts/main"><i class="fas fa-home"></i></a>
               <i class="far fa-compass"></i>
               <i class="far fa-heart"></i>
               <i class="far fa-user"></i>
