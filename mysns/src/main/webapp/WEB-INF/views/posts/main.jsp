@@ -10,6 +10,32 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <script src="https://kit.fontawesome.com/e78c69c572.js" crossorigin="anonymous"></script>
       <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+      
+      <!-- jQuery -->
+	  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+	  <!-- ajax_module -->
+	  <script src="/resources/js/user.js"></script>
+	  
+	  <script>
+		$(document).ready(function(){
+			console.log(userService);
+			
+			$("input").filter("[value=null]").val(""); //input null 필터
+			
+			var divRight = $(".right_user");
+			var inputUserno = divRight.find("input[name='user_no']");
+			
+			var userno = Number(inputUserno.val());
+			
+			window.onload = function(){
+				userService.get(userno, function(user){
+					$(".my_username").html(user.username);
+				});
+			};
+		});
+    </script>
+      
       <style>
           .nav_container{
               display: flex;
@@ -101,7 +127,7 @@
               font-weight: 600;
           }
           
-          .user_name{
+          .user_name, .my_username{
               font-weight: 600;
           }
           
@@ -232,7 +258,7 @@
                   <div class="card">
                       <header class="user">
                           <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">
-                          <div class="user_name"><sec:authentication property="principal.user.username"/></div>
+                          <div class="user_name">username</div>
                       </header>
                       <div class="card_image">
                           <img src="/resources/image/image_02.jpg" alt="404">
@@ -261,7 +287,7 @@
                   <div class="card">
                       <header class="user">
                           <img class="profile_image" src="/resources/image/image_02.jpg" alt="404">
-                          <div class="user_name"><sec:authentication property="principal.user.username"/></div>
+                          <div class="user_name">username</div>
                       </header>
                       <div class="card_image">
                           <img src="/resources/image/image_01.jpg" alt="404">
@@ -293,7 +319,8 @@
                   <div id="fixed_nav">
                       <div class="right_user">
                           <img class="right_profile_image" src="/resources/image/image_01.jpg" alt="404">
-                          <div class="user_name"><sec:authentication property="principal.user.username"/></div>
+                          <input type="hidden" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
+                          <div class="my_username"></div>
                       </div>
                       <div id="recommend">
                           회원님을 위한 추천
