@@ -3,6 +3,7 @@ package org.pth.service;
 import org.pth.domain.UserVO;
 import org.pth.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.Setter;
@@ -15,9 +16,14 @@ public class UserServiceImpl implements UserService {
 	@Setter(onMethod_ = @Autowired)
 	private UserMapper mapper;
 	
+	@Setter(onMethod_ = @Autowired)
+	private PasswordEncoder pwencoder;
+	
 	@Override
 	public int register(UserVO vo) {
 		log.info("User_register...."+vo);
+		
+		vo.setPassword(pwencoder.encode(vo.getPassword())); //password encoder Ã³¸®
 		
 		return mapper.insert(vo);
 	}
