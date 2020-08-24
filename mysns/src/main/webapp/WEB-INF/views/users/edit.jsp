@@ -13,7 +13,41 @@
     <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     
+    <!-- headers -->
+    <link rel="stylesheet" href="/resources/css/profile.css">
+    <script src="https://kit.fontawesome.com/e78c69c572.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+	<!-- ajax_module -->
+	<script src="/resources/js/user.js"></script>
+    
     <style>
+    	 /* headers */
+    	 #insta_icon{
+              padding-right: 1rem;
+              border-right: 1px solid black;
+              font-size: 22px;
+          }
+          
+         #pthgram{
+              display: inline-block;
+              font-family: 'Sriracha', cursive;
+              font-weight: bold;
+              font-size: 22px;
+          }
+        
+         .i{
+              font-size: 1.5rem;
+              margin: 1rem;
+          }
+          
+         a:hover { 
+          	text-decoration:none; 
+         }
+         /* end-headers */
+        
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 
         .body {
@@ -50,12 +84,6 @@
               margin: 1rem;
           }
     </style>
-    
-    <!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-	<!-- ajax_module -->
-	<script src="/resources/js/user.js"></script>
 	
     <script>
 		$(document).ready(function(){
@@ -99,7 +127,27 @@
 		});
     </script>
 </head>
+<header>
+    <a href="/posts/main">
+        <i id="insta_icon" class="fab fa-instagram"></i>
+        &nbsp;
+        <i id="pthgram">Pthgram</i>
+    </a>
+    <div class="search-outline">
+        <i class="fa fa-search" style="color:grey;" aria-hidden="true"></i>
+        <input class="search" type="text" autocapitalize="none" placeholder="Search" value="" size="25" />
+    </div>
+    <div class="right">
+            <a href="/posts/main"><i class="fas fa-home i"></i></a>
+            <i class="far fa-compass i"></i>
+            <i class="far fa-heart i"></i>
+            <i class="far fa-user i"></i>
+    </div>
+</header>
 <div class="container">
+	<hr>
+	<hr>
+	<hr>
     <h1>프로필 수정</h1>
   	<hr>
 	<div class="row">
