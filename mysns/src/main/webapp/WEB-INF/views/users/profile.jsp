@@ -9,8 +9,34 @@
 
     <link rel="stylesheet" href="/resources/css/profile.css">
 </head>
-<script src="https://kit.fontawesome.com/e78c69c572.js" crossorigin="anonymous"></script>
-      <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/e78c69c572.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+	<!-- ajax_module -->
+	<script src="/resources/js/user.js"></script>
+	
+	<script>
+		$(document).ready(function(){
+			console.log(userService);
+			
+			$("input").filter("[value=null]").val(""); //input null 필터
+
+			var pathArray = window.location.pathname.split('/');
+			
+			var email = pathArray[3];
+			
+			window.onload = function(){
+				userService.getByEmail(email, function(user){
+					$("#username").html(user.username);
+					$("#name").html(user.name);
+				});
+			};
+		});
+	</script>
+    
     <style>
         /* headers */
     	 #insta_icon{
@@ -57,7 +83,7 @@
             <a href=""><img class="bio__img" src="https://placekitten.com/150/150" alt="profile picture" /></a>
         </div>
         <div class="bio__header">
-            <h1 class="bio__account">kimkardashian</h1>
+            <h1 class="bio__account" id="username"></h1>
             <span class="bio__verified"><i class="fa fa-check" aria-hidden="true"></i></span>
             <button class="bio__follow">팔로우</button>
         </div>
@@ -67,9 +93,8 @@
             <span class="bio__following stats"><strong>37</strong> 팔로잉</span>
         </div>
         <div class="bio_blurb">
-            <h2 class="bio__name">Kim Kardashian West</h2>
-            <p class="bio__description">The <a href="">@SKIMS</a> Smooth Essentials collection is available now & Shop KKW x KRIS by <a href="">@kkwfragrance</a> on Wednesday, April 15th at 12PM PDT
-                skims.com</p>
+            <h2 class="bio__name" id="name"></h2>
+            <p class="bio__description">description</p>
         </div>
     </section>
     <nav class="story">
