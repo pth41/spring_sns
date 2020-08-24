@@ -25,6 +25,11 @@
 		values (seq_user.nextval, #{email}, #{password}, #{name}, #{username})
 	</insert>
 	
+	<insert id="insertAuth">
+		insert into tbl_user_auth (email, auth)
+		values (#{email}, #{auth})
+	</insert>
+	
 	<select id="read" resultType="org.pth.domain.UserVO">
 		select * from tbl_user where user_no = #{user_no}
 	</select>
