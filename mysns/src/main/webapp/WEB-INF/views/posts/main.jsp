@@ -249,7 +249,7 @@
               <a href="/posts/main"><i class="fas fa-home"></i></a>
               <i class="far fa-compass"></i>
               <i class="far fa-heart"></i>
-              <i class="far fa-user"></i>
+              <a href="/users/profile/<sec:authentication property="principal.user.email"/>"><i class="far fa-user"></i></a>
           </div>
       </div>
       <div class="main">
@@ -323,7 +323,7 @@
                           <div class="my_username"></div>
                       </div>
                       <div id="recommend">
-                          회원님을 위한 추천
+                          	회원님을 위한 추천
                       </div>
                   </div>
               </div>

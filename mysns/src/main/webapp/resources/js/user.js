@@ -71,6 +71,18 @@ var userService = (function(){
 		});
 	}
 	
+	function getByEmail(url, callback, error) {
+		$.get(url+".json", function(result) {
+			if(callback) {
+				callback(result);
+			}
+		}).fail(function(xhr, status, err) {
+			if(error) {
+				error();
+			}
+		});
+	}
+	
 	function displayTime(timeValue) {
 		var today = new Date();
 		
@@ -97,6 +109,7 @@ var userService = (function(){
 	return {
 		add : add,
 		get : get,
+		getByEmail : getByEmail,
 		remove : remove,
 		update : update,
 		displayTime : displayTime

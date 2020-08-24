@@ -3,12 +3,7 @@ package org.pth.service;
 import org.pth.domain.AuthVO;
 import org.pth.domain.UserVO;
 import org.pth.mapper.UserMapper;
-import org.pth.security.domain.CustomUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +40,13 @@ public class UserServiceImpl implements UserService {
 		log.info("User_get...."+user_no);
 		
 		return mapper.read(user_no);
+	}
+	
+	@Override
+	public UserVO getByEmail(String email) {
+		log.info("User_getByEmail..."+email);
+		
+		return mapper.readByEmail(email);
 	}
 	
 	@Override

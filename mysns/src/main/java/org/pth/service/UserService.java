@@ -7,6 +7,8 @@ public interface UserService {
 	
 	public UserVO get(Long user_no);
 	
+	public UserVO getByEmail(String email);
+	
 	public int modify(UserVO vo);
 	
 	public int remove(Long user_no);
