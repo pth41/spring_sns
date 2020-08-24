@@ -5,6 +5,7 @@ import java.util.stream.IntStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.pth.domain.AuthVO;
 import org.pth.domain.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -57,6 +58,16 @@ public class UserMapperTests {
 		vo.setPassword(pwencoder.encode("1234"));
 		
 		mapper.insert(vo);
+	}
+	
+	@Test
+	public void testInsertAuth() {
+		AuthVO vo = new AuthVO();
+		
+		vo.setEmail("qkrxogml");
+		vo.setAuth("ROLE_USER");
+		
+		mapper.insertAuth(vo);
 	}
 	
 	@Test
