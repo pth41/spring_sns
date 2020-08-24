@@ -71,8 +71,8 @@ var userService = (function(){
 		});
 	}
 	
-	function getByEmail(url, callback, error) {
-		$.get(url+".json", function(result) {
+	function getByEmail(email, callback, error) {
+		$.get("/users/profiles/"+email+".json", function(result) {
 			if(callback) {
 				callback(result);
 			}
