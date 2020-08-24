@@ -65,18 +65,27 @@
 			
 			var container = $(".container");
 			var inputUserno = container.find("input[name='user_no']");
-			var inputEmail = container.find("input[nmae='email']");
+			var inputEmail = container.find("input[name='email']");
 			var inputName = container.find("input[name='name']");
 			var inputUsername = container.find("input[name='username']");
 			var inputPhoneNum = container.find("input[name='phoneNum']");
 			var inputPassword = container.find("input[name='password']");
 			var inputPasswordConfirm = container.find("input[name='password_confirm']");
 			
-			var modifyBtn = $("#modifyBtn");
+			var userno = Number(inputUserno.val());
+			
+			var modifyBtn = $("#modifyBtn");			
+			
+			userService.get(userno, function(user){
+				inputName.val(user.name);
+				inputPhoneNum.val(user.phoneNum);
+				inputUsername.val(user.username);
+			});
 			
 			modifyBtn.on("click", function(e) {
 					var user = {
-							user_no : Number(23),
+							user_no : userno,
+							email : inputEmail.val(),
 							name : inputName.val(),
 							username : inputUsername.val(),
 							phoneNum : inputPhoneNum.val()
@@ -84,11 +93,9 @@
 					userService.update(user, function(result){
 						alert("RESULT: " + result);
 						
-						location.replace('/edit')
+						location.replace('/users/edit')
 					});
 			});
-			
-			
 		});
     </script>
 </head>
@@ -114,30 +121,30 @@
           This is an <strong>.alert</strong>. Use this to show important messages to the user.
         </div>
         <h3>프로필 정보</h3>
-        <input type="text" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
+        <input type="hidden" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
         <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-lg-3 control-label">이름:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" name="name" value='<sec:authentication property="principal.user.name"/>'>
+              <input class="form-control" type="text" name="name" value=''>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">전화번호:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" name="phoneNum" value='<sec:authentication property="principal.user.phoneNum"/>'>
+              <input class="form-control" type="text" name="phoneNum" value=''>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" name="email" value='<sec:authentication property="principal.user.email"/>'>
+              <input class="form-control" readonly="readonly" type="text" name="email" value='<sec:authentication property="principal.user.email"/>'>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">사용자이름:</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" name="username" value='<sec:authentication property="principal.user.username"/>'>
+              <input class="form-control" type="text" name="username" value=''>
             </div>
           </div>
           <div class="form-group">
