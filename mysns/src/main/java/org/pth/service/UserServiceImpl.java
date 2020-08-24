@@ -3,7 +3,12 @@ package org.pth.service;
 import org.pth.domain.AuthVO;
 import org.pth.domain.UserVO;
 import org.pth.mapper.UserMapper;
+import org.pth.security.domain.CustomUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +34,7 @@ public class UserServiceImpl implements UserService {
 		int insertCount = mapper.insert(vo);
 		
 		if(insertCount == 1) {
-			mapper.insertAuth(new AuthVO(vo.getEmail(), "ROLE_USER"));
+			mapper.insertAuth(new AuthVO(vo.getEmail(), "ROLE_USER")); //계정에 권한 부여
 		}
 		
 		return insertCount;
@@ -46,7 +51,9 @@ public class UserServiceImpl implements UserService {
 	public int modify(UserVO vo) {
 		log.info("User_modify...."+vo);
 		
-		return mapper.update(vo);
+		int modifyCount = mapper.update(vo);
+		
+		return modifyCount;
 	}
 	
 	@Override
