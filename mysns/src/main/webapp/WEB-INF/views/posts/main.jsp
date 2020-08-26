@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!doctype html>
 <html>
@@ -246,6 +247,7 @@
           </div>
           
           <div class="right">
+          	  <a href="/posts/register"><i class="far fa-plus-square i"></i></a>
               <a href="/posts/main"><i class="fas fa-home"></i></a>
               <i class="far fa-compass"></i>
               <i class="far fa-heart"></i>

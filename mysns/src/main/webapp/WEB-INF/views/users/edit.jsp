@@ -138,6 +138,7 @@
         <input class="search" type="text" autocapitalize="none" placeholder="Search" value="" size="25" />
     </div>
     <div class="right">
+    		<a href="/posts/register"><i class="far fa-plus-square i"></i></a>
             <a href="/posts/main"><i class="fas fa-home i"></i></a>
             <i class="far fa-compass i"></i>
             <i class="far fa-heart i"></i>
