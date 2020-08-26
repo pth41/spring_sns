@@ -25,6 +25,14 @@
 		$(document).ready(function(){
 			console.log(postService);
 			
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
+			
+			//Ajax spring security header...
+			$(document).ajaxSend(function(e, xhr, options) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			});
+			
 			var container = $(".container");
 			var inputUserno = container.find("input[name='user_no']");
 			var inputEmail = container.find("input[name='email']");

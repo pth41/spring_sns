@@ -89,6 +89,14 @@
 		$(document).ready(function(){
 			console.log(userService);
 			
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
+			
+			//Ajax spring security header...
+			$(document).ajaxSend(function(e, xhr, options) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			});
+			
 			$("input").filter("[value=null]").val(""); //input null 필터
 			
 			var container = $(".container");
