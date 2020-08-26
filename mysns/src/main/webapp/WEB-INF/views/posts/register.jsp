@@ -22,28 +22,57 @@
 	<script src="/resources/js/post.js"></script>
 	
 	<script>
-		
+		$(document).ready(function(){
+			console.log(postService);
+			
+			var container = $(".container");
+			var inputUserno = container.find("input[name='user_no']");
+			var inputEmail = container.find("input[name='email']");
+			var inputContent = container.find("input[name='content']");
+			
+			var userno = Number(inputUserno.val());
+
+			$("#registerBtn").on("click", function(e) {
+				var post = {
+						user_no : userno,
+						email : inputEmail.val(),
+						content : inputContent.val()
+					};
+				postService.add(post, function(result){
+					alert("RESULT: " + result);
+					
+					location.href='/posts/main';
+				});
+			});
+			
+		});
 	</script>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
         
-        #insta_icon{
+        /* headers */
+    	 #insta_icon{
               padding-right: 1rem;
               border-right: 1px solid black;
               font-size: 22px;
           }
           
-          #pthgram{
-              display: inline;
+         #pthgram{
+              display: inline-block;
               font-family: 'Sriracha', cursive;
               font-weight: bold;
               font-size: 22px;
           }
         
-        .i{
+         .i{
               font-size: 1.5rem;
               margin: 1rem;
           }
+          
+         a:hover { 
+          	text-decoration:none; 
+         }
+         /* end-headers */
 
         .body {
         // custom fonts, etcetera can go here 
@@ -91,6 +120,7 @@
         <input class="search" type="text" autocapitalize="none" placeholder="Search" value="" size="25" />
     </div>
     <div class="right">
+    		<a href="/posts/register"><i class="far fa-plus-square i"></i></a>
             <a href="/posts/main"><i class="fas fa-home i"></i></a>
             <i class="far fa-compass i"></i>
             <i class="far fa-heart i"></i>
@@ -113,20 +143,21 @@
           <input type="file" class="form-control">
         </div>
       </div>
-      
+      <input type="hidden" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
+      <input type="hidden" name="email" value='<sec:authentication property="principal.user.email"/>'>
       <!-- edit form column -->
       <div class="col-md-9 personal-info">
         <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-lg-3 control-label">내용 :</label>
             <div class="col-lg-8">
-              <input class="form-control" placeholder="문구 입력..." type="text" value="">
+              <input name="content" class="form-control" placeholder="문구 입력..." type="text" value="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="button" class="btn btn-primary" value="등록">
+              <input type="button" id="registerBtn" class="btn btn-primary" value="등록">
               <span></span>
               <input type="reset" class="btn btn-default" value="취소">
             </div>
