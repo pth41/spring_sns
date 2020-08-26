@@ -121,7 +121,7 @@
 					userService.update(user, function(result){
 						alert("RESULT: " + result);
 						
-						location.replace('/users/edit')
+						location.replace('/users/edit');
 					});
 			});
 		});
