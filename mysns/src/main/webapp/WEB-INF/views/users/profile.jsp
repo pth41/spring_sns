@@ -42,13 +42,20 @@
 				
 				if(inputEmail.val() == email){
 					$(".edit").show();
+					$(".logout").show();					
 					$(".bio__follow").hide();
 				}else{
 					$(".edit").hide();
+					$(".logout").hide();
 					$(".bio__follow").show();
 				}
 			};
+			
 		});
+		
+		function check(){
+			return confirm("로그아웃 하시겠습니까?");
+		}
 	</script>
     
     <style>
@@ -74,15 +81,23 @@
          a:hover { 
           	text-decoration:none; 
          }
-         
+         /* end-headers */
          .edit {
          	display: inline-block;
          	color: black;
          	background-color: white;
          	border-color: silver;
-         	
          }
-         /* end-headers */
+         
+         .logoutForm {
+         	display: inline-block;
+         	padding-left: 20px;
+         }
+         
+         .logout {
+         	color: white;
+         	background-color: black;
+         }
     </style>
 <header>
     <a href="/posts/main">
@@ -121,7 +136,10 @@
             &nbsp;&nbsp;
             <sec:authorize access="isAuthenticated()">
             <button class="edit" onclick="location.href='/users/edit'">프로필 수정</button>
-            <button class="logout" ></button>
+            <form class="logoutForm" action="/logout" method="post" onsubmit="return check();">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<button type="submit" class="logout">로그아웃</button>
+			</form>
             <button class="bio__follow">팔로우</button>
             </sec:authorize>
             
