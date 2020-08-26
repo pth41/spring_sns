@@ -141,7 +141,7 @@
             <a href="/posts/main"><i class="fas fa-home i"></i></a>
             <i class="far fa-compass i"></i>
             <i class="far fa-heart i"></i>
-            <i class="far fa-user i"></i>
+            <a href="/users/profile/<sec:authentication property="principal.user.email"/>"><i class="far fa-user i"></i></a>
     </div>
 </header>
 <div class="container">
