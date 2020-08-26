@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 
@@ -23,16 +26,27 @@
 			console.log(userService);
 			
 			$("input").filter("[value=null]").val(""); //input null 필터
+			
+			var container = $(".right");
+			var inputEmail = container.find("input[name='email']");	//로그인 이메일
 
 			var pathArray = window.location.pathname.split('/');
 			
-			var email = pathArray[3];
+			var email = pathArray[3];	//프로필 이메일
 			
 			window.onload = function(){
 				userService.getByEmail(email, function(user){
 					$("#username").html(user.username);
 					$("#name").html(user.name);
 				});
+				
+				if(inputEmail.val() == email){
+					$(".edit").show();
+					$(".bio__follow").hide();
+				}else{
+					$(".edit").hide();
+					$(".bio__follow").show();
+				}
 			};
 		});
 	</script>
@@ -43,22 +57,30 @@
               padding-right: 1rem;
               border-right: 1px solid black;
               font-size: 22px;
-          }
+         }
           
          #pthgram{
               display: inline-block;
               font-family: 'Sriracha', cursive;
               font-weight: bold;
               font-size: 22px;
-          }
+         }
         
          .i{
               font-size: 1.5rem;
               margin: 1rem;
-          }
+         }
           
          a:hover { 
           	text-decoration:none; 
+         }
+         
+         .edit {
+         	display: inline-block;
+         	color: black;
+         	background-color: white;
+         	border-color: silver;
+         	
          }
          /* end-headers */
     </style>
@@ -72,10 +94,21 @@
         <i class="fa fa-search" style="color:grey;" aria-hidden="true"></i>
         <input class="search" type="text" autocapitalize="none" placeholder="Search" value="" size="25" />
     </div>
-    <button aria-label="login">
-        로그인
+    <sec:authorize access="isAnonymous()">
+    <button aria-label="login" onclick="location.href='/authlogin'">
+    	로그인
     </button>
-    <a class="signup" href="">가입</a>
+    <a class="signup" href="/users/signup9">가입</a>	
+    </sec:authorize>
+    <sec:authorize access="isAuthenticated()">
+    <div class="right">
+    	<a href="/posts/main"><i class="fas fa-home i"></i></a>
+        <i class="far fa-compass i"></i>
+        <i class="far fa-heart i"></i>
+        <a href="/users/profile/<sec:authentication property="principal.user.email"/>"><i class="far fa-user i"></i></a>
+        <input name="email" type="hidden" value="<sec:authentication property="principal.user.email"/>">
+    </div>
+    </sec:authorize>
 </header>
 <main>
     <section class="bio">
@@ -84,8 +117,14 @@
         </div>
         <div class="bio__header">
             <h1 class="bio__account" id="username"></h1>
-            <span class="bio__verified"><i class="fa fa-check" aria-hidden="true"></i></span>
+            <!-- <span class="bio__verified"><i class="fa fa-check" aria-hidden="true"></i></span> -->
+            &nbsp;&nbsp;
+            <sec:authorize access="isAuthenticated()">
+            <button class="edit" onclick="location.href='/users/edit'">프로필 수정</button>
+            <button class="logout" ></button>
             <button class="bio__follow">팔로우</button>
+            </sec:authorize>
+            
         </div>
         <div class="bio__stats">
             <span class="bio__posts stats"><strong>5,097</strong> 포스트</span>
@@ -238,5 +277,5 @@
             </li>
         </ul>
     </nav>
-    <span class="copyright">© 2020 Instagram from Facebook</span>
+    <span class="copyright">© 2020 Pthgram</span>
 </footer></html>
