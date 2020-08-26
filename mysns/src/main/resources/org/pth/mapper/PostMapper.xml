@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.pth.mapper.PostMapper">
 	<insert id="insert">
-		insert into tbl_post (post_no, user_no, username, content)
-		values (seq_post.nextval, #{user_no}, #{username}, #{content})
+		insert into tbl_post (post_no, user_no, email, content)
+		values (seq_post.nextval, #{user_no}, #{email}, #{content})
 	</insert>
 	
 	<insert id="insertSelectKey">
@@ -13,8 +13,8 @@
 			select seq_post.nextval from dual
 		</selectKey>
 		
-		insert into tbl_post (post_no, user_no, username, content)
-		values (#{post_no}, #{user_no}, #{username}, #{content})
+		insert into tbl_post (post_no, user_no, email, content)
+		values (#{post_no}, #{user_no}, #{email}, #{content})
 	</insert>
 	
 	<select id="read" resultType="org.pth.domain.PostVO">

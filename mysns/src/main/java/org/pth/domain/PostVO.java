@@ -8,7 +8,7 @@ import lombok.Data;
 public class PostVO {
 	private Long post_no;
 	private Long user_no;
-	private String username;
+	private String email;
 	private String content;
 	private Date regDate;
 	private Date modDate;

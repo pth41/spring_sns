@@ -29,7 +29,7 @@ public class PostMapperTests {
 		PostVO vo = new PostVO();
 		vo.setContent("새 글");
 		vo.setUser_no(tergetUser_no);
-		vo.setUsername("글쓴이");
+		vo.setEmail("글쓴이");
 		mapper.insert(vo);
 		log.info(vo);
 	}
