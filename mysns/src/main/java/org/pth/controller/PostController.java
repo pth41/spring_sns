@@ -42,6 +42,11 @@ public class PostController {
 		return new ModelAndView("posts/main");
 	}
 	
+	@GetMapping("/register")
+	public ModelAndView register() throws Exception {
+		return new ModelAndView("posts/register");
+	}
+	
 	@GetMapping(value = "/list",
 			produces = { MediaType.APPLICATION_XML_VALUE,
 						 MediaType.APPLICATION_JSON_UTF8_VALUE })
