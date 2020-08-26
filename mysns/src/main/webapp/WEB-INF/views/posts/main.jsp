@@ -17,6 +17,7 @@
 
 	  <!-- ajax_module -->
 	  <script src="/resources/js/user.js"></script>
+	  <script src="/resources/js/post.js"></script>
 	  
 	  <script>
 		$(document).ready(function(){
