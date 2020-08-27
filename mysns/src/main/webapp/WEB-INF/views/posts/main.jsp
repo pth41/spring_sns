@@ -20,6 +20,11 @@
 	  <script src="/resources/js/post.js"></script>
 	  
 	  <script>
+	  	function goProfile(unTag) {	//username 클릭시 profile 이동
+	  		var email = $(unTag).data("email");
+			location.href="/users/profile/"+email;
+		}
+	  	
 		$(document).ready(function(){
 			console.log(userService);
 			
@@ -55,7 +60,7 @@
 						str += '<div class="card">';
 	                    str += '<header class="user">';
 	                    str += '   <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">';
-	                    str += '   <div class="un user_name'+i+'"></div>';
+	                    str += '   <a class="un user_name'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+list[i].email+'"></a>';
 	                    str += '</header>';
 	                    str += '<div class="card_image">';
 	                    str += '   <img src="/resources/image/image_02.jpg" alt="404">';
@@ -71,7 +76,8 @@
 	                    str += '   </div>';
 	                    str += '</div>';
 	                    str += '<div class="content">';
-	                    str += '   <a class="un user_name'+i+'"></a> '+list[i].content+'<br>';
+	                    str += '   <a class="un user_name'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+list[i].email+'"></a> '+list[i].content+'<br>';
+	                    str += '   <a class="time">'+postService.displayTime(list[i].regDate)+'</a>';
 	                    str += '</div>';
 	                    str += '<div class="comment">';
 	                    str +=     'comment1<br>';
@@ -191,6 +197,13 @@
           
           .un, .my_username{
               font-weight: 600;
+          }
+          
+          .time{
+          	  color: silver;
+          	  font-size: 0.8rem;
+          	  font-style: normal;
+          	  font-weight: bold;
           }
           
           .info i{
