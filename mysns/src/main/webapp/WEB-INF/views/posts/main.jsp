@@ -36,19 +36,65 @@
 				});
 			};
 			
-			postService.getList(function(list){
-				console.log("list: " + list);
-				
-				var str = "";
-				if(list == null || list.length == 0) {
+			var cardSection = $(".card_section");
+			
+			showList();
+			
+			function showList() {
+				postService.getList(function(list){
+					console.log("list: " + list);
 					
-					return;
-				}
-				for(var i=0, len=list.length||0; i<len; i++){
+					var str = "";
+					if(list == null || list.length == 0) {
+						cardSection.html("");
+						return;
+					}
+					for(var i=0, len=list.length||0; i<len; i++){
+						const userno = Number(list[i].user_no);
+						
+						str += '<div class="card">';
+	                    str += '<header class="user">';
+	                    str += '   <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">';
+	                    str += '   <div class="un user_name'+i+'"></div>';
+	                    str += '</header>';
+	                    str += '<div class="card_image">';
+	                    str += '   <img src="/resources/image/image_02.jpg" alt="404">';
+	                    str += '</div>';
+	                    str += '<div class="info">';
+	                    str += '   <div class="info_left">';
+	                    str += '       <i class="far fa-heart"></i>';
+	                    str += '       <i class="far fa-comment"></i>';
+	                    str += '       <i class="fas fa-upload"></i>';
+	                    str += '   </div>';
+	                    str += '   <div class="info_right">';
+	                    str += '       <i class="far fa-bookmark"></i>';
+	                    str += '   </div>';
+	                    str += '</div>';
+	                    str += '<div class="content">';
+	                    str += '   <a class="un user_name'+i+'"></a> '+list[i].content+'<br>';
+	                    str += '</div>';
+	                    str += '<div class="comment">';
+	                    str +=     'comment1<br>';
+	                    str +=     'comment2<br>';
+	                    str += '</div>';
+	                    str += '<div class="comment_form">';
+	                    str += '   <form action="">';
+	                    str += '       <input type="text" placeholder="댓글 입력...">';
+	                    str += '   </form>';
+	                    str += '</div>';
+	                	str += '</div>';
+	                	
+	                	let unDIV = ".user_name"+i;
+	                	userService.get(userno, function(user){
+							$(unDIV).html(user.username);
+						});
+					}
 					
-				}
-				
-			});
+					cardSection.html(str);
+					
+				});
+			}
+			
 		});
     </script>
       
@@ -143,7 +189,7 @@
               font-weight: 600;
           }
           
-          .user_name, .my_username{
+          .un, .my_username{
               font-weight: 600;
           }
           
@@ -167,7 +213,7 @@
               justify-content: space-between;
           }
           
-          .comment{
+          .comment, .content{
               margin: 0rem 1rem 1rem 1rem;
               border-bottom: 1px solid #efefef;
               padding-bottom: 1rem;
@@ -289,6 +335,9 @@
                           <div class="info_right">
                               <i class="far fa-bookmark"></i>
                           </div>
+                      </div>
+                      <div class="content">
+                      	  <a class="user_name">username</a> content<br>
                       </div>
                       <div class="comment">
                           comment1<br>
