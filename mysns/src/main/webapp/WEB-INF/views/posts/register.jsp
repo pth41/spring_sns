@@ -25,18 +25,18 @@
 		$(document).ready(function(){
 			console.log(postService);
 			
-			var csrfHeaderName = "${_csrf.headerName}";
-			var csrfTokenValue = "${_csrf.token}";
+			var container = $(".container");
+			var inputUserno = container.find("input[name='user_no']");
+			var inputEmail = container.find("input[name='email']");
+			var inputContent = container.find("input[name='content']");
+			
+			var csrfHeaderName = container.find("input[name='csrfHeaderName']").val();
+			var csrfTokenValue = container.find("input[name='csrfToken']").val();
 			
 			//Ajax spring security header...
 			$(document).ajaxSend(function(e, xhr, options) {
 				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 			});
-			
-			var container = $(".container");
-			var inputUserno = container.find("input[name='user_no']");
-			var inputEmail = container.find("input[name='email']");
-			var inputContent = container.find("input[name='content']");
 			
 			var userno = Number(inputUserno.val());
 
@@ -153,6 +153,8 @@
       </div>
       <input type="hidden" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
       <input type="hidden" name="email" value='<sec:authentication property="principal.user.email"/>'>
+      <input type="hidden" name="csrfHeaderName" value='${_csrf.headerName}'>
+      <input type="hidden" name="csrfToken" value='${_csrf.token}'>
       <!-- edit form column -->
       <div class="col-md-9 personal-info">
         <form class="form-horizontal" role="form">
