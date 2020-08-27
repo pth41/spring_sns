@@ -21,15 +21,12 @@ var replyService = (function(){
 		})
 	}
 	
-	function getList(param, callback, error) {
-		var bno = param.bno;
-		var page = param.page || 1;
-		
-		$.getJSON("/replies/pages/"+bno+"/"+page+".json",
+	function getList(post_no, callback, error) {
+		$.getJSON("/replies/list/"+post_no+".json",
 				function(data) {
 					if(callback){
-						//callback(data); // 댓글 목록만 가져오는 경우
-						callback(data.replyCnt, data.list); // 댓글 숫자와 목록을 가져오는 경우
+						callback(data); // 댓글 목록만 가져오는 경우
+						//callback(data.replyCnt, data.list); // 댓글 숫자와 목록을 가져오는 경우
 					}
 				}
 		).fail(function(xhr, status, err) {
@@ -39,10 +36,10 @@ var replyService = (function(){
 			});
 	}
 	
-	function remove(rno, callback, error) {
+	function remove(reply_no, callback, error) {
 		$.ajax({
 			type : 'delete',
-			url : '/replies/'+rno,
+			url : '/replies/'+reply_no,
 			success : function(deleteResult, status, xhr) {
 				if(callback) {
 					callback(deleteResult);
@@ -57,11 +54,11 @@ var replyService = (function(){
 	}
 	
 	function update(reply, callback, error) {
-		console.log("RNO: "+reply.rno);
+		console.log("RNO: "+reply.reply_no);
 		
 		$.ajax({
 			type : 'put',
-			url : '/replies/'+reply.rno,
+			url : '/replies/'+reply.reply_no,
 			data : JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
@@ -77,8 +74,8 @@ var replyService = (function(){
 		});
 	}
 	
-	function get(rno, callback, error) {
-		$.get("/replies/"+rno+".json", function(result) {
+	function get(reply_no, callback, error) {
+		$.get("/replies/"+reply_no+".json", function(result) {
 			if(callback) {
 				callback(result);
 			}
