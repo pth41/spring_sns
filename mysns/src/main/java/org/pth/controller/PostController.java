@@ -83,7 +83,7 @@ public class PostController {
 	@DeleteMapping(value = "/{post_no}",
 			produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> remove(@PathVariable("post_no") Long post_no) {
-		log.info("user_remove: "+post_no);
+		log.info("post_remove: "+post_no);
 		
 		return service.remove(post_no) == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)
