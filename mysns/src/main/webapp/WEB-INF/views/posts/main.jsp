@@ -98,7 +98,7 @@
 	                    str += '   <form class="regform" name="regform'+i+'" method="post">';
 	                    str += '	   <input type="hidden" name="post_no" value="'+list[i].post_no+'">';
 	                    str += '       <input name="reply_content" class="replyInput type="text" placeholder="댓글 입력...">';
-	                    str += '	   <button type="submit" class="replyBtn">게시</button>';
+	                    str += '	   <button class="replyBtn">게시</button>';
 	                    str += '   </form>';
 	                    str += '</div>';
 	                	str += '</div>';
@@ -116,11 +116,10 @@
 			
 			var inputEmail = divRight.find("input[name='email']");
 
-			$(".regform").on("submit", function(e) {
-				e.preventDefault();
-				
-				var postno = $(this).find('[name=post_no]').val();
-				var reply_content = $(this).find('[name=reply_content]').val();
+			$(".replyBtn").on("click", function(e) {
+				var rform = $(this).parent();
+				var postno = rform.find('[name=post_no]').val();
+				var reply_content = rform.find('[name=reply_content]').val();
 				
 				var reply = {
 						post_no : Number(postno),
