@@ -20,6 +20,17 @@
 		update tbl_reply set reply_content = #{reply_content}, modDate = sysdate where reply_no = #{reply_no}
 	</update>
 	
+	<select id="getList" resultType="org.pth.domain.ReplyVO">
+	<![CDATA[
+		select
+			*
+		from tbl_reply
+		where post_no = #{post_no} 
+		and reply_no > 0
+		order by reply_no desc
+	]]>
+	</select>
+	
 	<select id="getListWithPaging" resultType="org.pth.domain.ReplyVO">
 		<![CDATA[
 		select reply_no, post_no, reply_content, email, regDate, modDate
