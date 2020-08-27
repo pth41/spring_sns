@@ -36,7 +36,7 @@
 			
 			var userno = Number(inputUserno.val());
 			
-			window.onload = function(){
+			window.onload = function(){	//로그인한 계정 username 표시
 				userService.get(userno, function(user){
 					$(".my_username").html(user.username);
 				});
@@ -44,9 +44,9 @@
 			
 			var cardSection = $(".card_section");
 			
-			showList();
+			showList_Post();
 			
-			function showList() {
+			function showList_Post() {
 				postService.getList(function(list){
 					console.log("list: " + list);
 					
@@ -85,9 +85,10 @@
 	                    str +=     'comment2<br>';
 	                    str += '</div>';
 	                    str += '<div class="comment_form">';
-	                    str += '   <form action="">';
-	                    str += '       <input class="replyInput type="text" placeholder="댓글 입력...">';
-	                    str += '	   <button class="replyBtn">게시</button>';
+	                    str += '   <form class="regform" name="regform'+i+'" method="post">';
+	                    str += '	   <input type="hidden" name="post_no" value="'+list[i].post_no+'">';
+	                    str += '       <input name="reply_content" class="replyInput type="text" placeholder="댓글 입력...">';
+	                    str += '	   <button type="submit" class="replyBtn">게시</button>';
 	                    str += '   </form>';
 	                    str += '</div>';
 	                	str += '</div>';
@@ -102,6 +103,25 @@
 					
 				});
 			}
+			
+			var inputEmail = divRight.find("input[name='email']");
+
+			$(".regform").on("submit", function(e) {
+				e.preventDefault();
+				
+				var postno = $(this).find('[name=post_no]').val();
+				var reply_content = $(this).find('[name=reply_content]').val();
+				
+				var reply = {
+						post_no : Number(postno),
+						user_no : userno,
+						email : inputEmail.val(),
+						reply_content : inputReplyContent.val()
+					};
+				replyService.add(reply, function(result){
+					alert("RESULT: " + result);
+				});
+			});
 			
 		});
     </script>
@@ -387,8 +407,9 @@
                       </div>
                       <div class="comment_form">
                           <form action="">
-                              <input class="replyInput" type="text" placeholder="댓글 입력...">
-                              <button class="replyBtn">게시</button>
+                              <input class="replyInput" type="text" placeholder="댓글 입력..." value="">
+                              <input type="hidden" name="post_no" value="">
+                              <button type="submit" class="replyBtn">게시</button>
                           </form>
                       </div>
                   </div>
@@ -400,6 +421,7 @@
                       <div class="right_user">
                           <img class="right_profile_image" src="/resources/image/image_01.jpg" alt="404">
                           <input type="hidden" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
+                          <input type="hidden" name="email" value='<sec:authentication property="principal.user.email"/>'>
                           <div class="my_username"></div>
                       </div>
                       <div id="recommend">
