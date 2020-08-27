@@ -14,3 +14,4 @@ SpringFramework_SNS
 - 좋아요 기능
 - 검색 (사용자, 해시태그)
 - 프로필 확인 및 수정
+- CSRF 처리
