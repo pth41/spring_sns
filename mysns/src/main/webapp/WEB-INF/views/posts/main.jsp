@@ -85,7 +85,8 @@
 	                    str += '</div>';
 	                    str += '<div class="comment_form">';
 	                    str += '   <form action="">';
-	                    str += '       <input type="text" placeholder="댓글 입력...">';
+	                    str += '       <input class="replyInput type="text" placeholder="댓글 입력...">';
+	                    str += '	   <button class="replyBtn">게시</button>';
 	                    str += '   </form>';
 	                    str += '</div>';
 	                	str += '</div>';
@@ -242,7 +243,7 @@
               width: 550px;
               height: 30px;
               border: none;
-              padding-left: 10px;
+              padding-left: 15px;
           }
           
           .comment_form form #sumbit{
@@ -302,6 +303,33 @@
               -webkit-transition-duration: 0.3s;
               transition-duration: 0.3s;
           }
+          
+          .replyInput {
+          	  width:80%;
+          	  height:100%;
+          	  border: none;
+          	  outline: none;
+          	  display: inline;
+          	  box-sizing: border-box;
+          }
+          
+          .replyBtn {
+          	  width:20%;
+          	  height:100%;
+          	  border: none;
+          	  outline: none;
+          	  display: inline;
+          	  margin-left: -10px;
+          	  box-sizing: border-box;
+          	  font-size: 0.8em;
+          	  background-color: white;
+          	  color:#042AaC;
+          	  cursor: pointer;
+          }
+          
+          .replyBtn:hover {
+          	  font-weight: bolder;
+          }
       </style>
   </head>
 
@@ -358,7 +386,8 @@
                       </div>
                       <div class="comment_form">
                           <form action="">
-                              <input type="text" placeholder="댓글 입력...">
+                              <input class="replyInput" type="text" placeholder="댓글 입력...">
+                              <button class="replyBtn">게시</button>
                           </form>
                       </div>
                   </div>
