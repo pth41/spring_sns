@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,12 @@ public class UserController {
 	@GetMapping("/edit")
 	public ModelAndView edit() throws Exception {
 		return new ModelAndView("users/edit");
-	} 
+	}
+	
+	@GetMapping("/profile/*")
+	public ModelAndView profile() throws Exception {
+		return new ModelAndView("users/profile");
+	}
 	
 	@PostMapping(value = "/new",
 			consumes = "application/json",
@@ -61,6 +67,15 @@ public class UserController {
 		log.info("user_get: "+user_no);
 		
 		return new ResponseEntity<>(service.get(user_no), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/profiles/{email}",
+			produces = { MediaType.APPLICATION_XML_VALUE,
+						 MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<UserVO> getByEmail(@PathVariable("email") String email) {
+		log.info("user_getByEmail: "+email);
+		
+		return new ResponseEntity<>(service.getByEmail(email), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = "/{user_no}",
