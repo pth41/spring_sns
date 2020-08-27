@@ -83,6 +83,10 @@
               border: 1px solid #efefef;
               margin: 1rem;
           }
+        
+        .alert {
+        	display: none;
+        }
     </style>
 	
     <script>
