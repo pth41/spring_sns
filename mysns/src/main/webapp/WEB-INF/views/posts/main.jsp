@@ -20,6 +20,11 @@
 	  <script src="/resources/js/post.js"></script>
 	  
 	  <script>
+	  	function goProfile(unTag) {	//username 클릭시 profile 이동
+	  		var email = $(unTag).data("email");
+			location.href="/users/profile/"+email;
+		}
+	  	
 		$(document).ready(function(){
 			console.log(userService);
 			
@@ -36,19 +41,67 @@
 				});
 			};
 			
-			postService.getList(function(list){
-				console.log("list: " + list);
-				
-				var str = "";
-				if(list == null || list.length == 0) {
+			var cardSection = $(".card_section");
+			
+			showList();
+			
+			function showList() {
+				postService.getList(function(list){
+					console.log("list: " + list);
 					
-					return;
-				}
-				for(var i=0, len=list.length||0; i<len; i++){
+					var str = "";
+					if(list == null || list.length == 0) {
+						cardSection.html("");
+						return;
+					}
+					for(var i=0, len=list.length||0; i<len; i++){
+						const userno = Number(list[i].user_no);
+						
+						str += '<div class="card">';
+	                    str += '<header class="user">';
+	                    str += '   <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">';
+	                    str += '   <a class="un user_name'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+list[i].email+'"></a>';
+	                    str += '</header>';
+	                    str += '<div class="card_image">';
+	                    str += '   <img src="/resources/image/image_02.jpg" alt="404">';
+	                    str += '</div>';
+	                    str += '<div class="info">';
+	                    str += '   <div class="info_left">';
+	                    str += '       <i class="far fa-heart"></i>';
+	                    str += '       <i class="far fa-comment"></i>';
+	                    str += '       <i class="fas fa-upload"></i>';
+	                    str += '   </div>';
+	                    str += '   <div class="info_right">';
+	                    str += '       <i class="far fa-bookmark"></i>';
+	                    str += '   </div>';
+	                    str += '</div>';
+	                    str += '<div class="content">';
+	                    str += '   <a class="un user_name'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+list[i].email+'"></a> '+list[i].content+'<br>';
+	                    str += '   <a class="time">'+postService.displayTime(list[i].regDate)+'</a>';
+	                    str += '</div>';
+	                    str += '<div class="comment">';
+	                    str +=     'comment1<br>';
+	                    str +=     'comment2<br>';
+	                    str += '</div>';
+	                    str += '<div class="comment_form">';
+	                    str += '   <form action="">';
+	                    str += '       <input class="replyInput type="text" placeholder="댓글 입력...">';
+	                    str += '	   <button class="replyBtn">게시</button>';
+	                    str += '   </form>';
+	                    str += '</div>';
+	                	str += '</div>';
+	                	
+	                	let unDIV = ".user_name"+i;
+	                	userService.get(userno, function(user){
+							$(unDIV).html(user.username);
+						});
+					}
 					
-				}
-				
-			});
+					cardSection.html(str);
+					
+				});
+			}
+			
 		});
     </script>
       
@@ -143,8 +196,15 @@
               font-weight: 600;
           }
           
-          .user_name, .my_username{
+          .un, .my_username{
               font-weight: 600;
+          }
+          
+          .time{
+          	  color: silver;
+          	  font-size: 0.8rem;
+          	  font-style: normal;
+          	  font-weight: bold;
           }
           
           .info i{
@@ -167,7 +227,7 @@
               justify-content: space-between;
           }
           
-          .comment{
+          .comment, .content{
               margin: 0rem 1rem 1rem 1rem;
               border-bottom: 1px solid #efefef;
               padding-bottom: 1rem;
@@ -183,7 +243,7 @@
               width: 550px;
               height: 30px;
               border: none;
-              padding-left: 10px;
+              padding-left: 15px;
           }
           
           .comment_form form #sumbit{
@@ -243,6 +303,33 @@
               -webkit-transition-duration: 0.3s;
               transition-duration: 0.3s;
           }
+          
+          .replyInput {
+          	  width:80%;
+          	  height:100%;
+          	  border: none;
+          	  outline: none;
+          	  display: inline;
+          	  box-sizing: border-box;
+          }
+          
+          .replyBtn {
+          	  width:20%;
+          	  height:100%;
+          	  border: none;
+          	  outline: none;
+          	  display: inline;
+          	  margin-left: -10px;
+          	  box-sizing: border-box;
+          	  font-size: 0.8em;
+          	  background-color: white;
+          	  color:#042AaC;
+          	  cursor: pointer;
+          }
+          
+          .replyBtn:hover {
+          	  font-weight: bolder;
+          }
       </style>
   </head>
 
@@ -290,13 +377,17 @@
                               <i class="far fa-bookmark"></i>
                           </div>
                       </div>
+                      <div class="content">
+                      	  <a class="user_name">username</a> content<br>
+                      </div>
                       <div class="comment">
                           comment1<br>
                           comment2<br>
                       </div>
                       <div class="comment_form">
                           <form action="">
-                              <input type="text" placeholder="댓글 입력...">
+                              <input class="replyInput" type="text" placeholder="댓글 입력...">
+                              <button class="replyBtn">게시</button>
                           </form>
                       </div>
                   </div>

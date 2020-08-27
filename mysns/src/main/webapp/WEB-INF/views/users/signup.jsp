@@ -36,19 +36,19 @@
 	$(document).ready(function(){
 		console.log(userService);
 		
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
-		
-		//Ajax spring security header...
-		$(document).ajaxSend(function(e, xhr, options) {
-			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-		});
-		
 		var container = $(".container");
 		var inputEmail = container.find("input[name='email']");
 		var inputName = container.find("input[name='name']");
 		var inputUsername = container.find("input[name='username']");
 		var inputPassword = container.find("input[name='password']");
+		
+		var csrfHeaderName = container.find("input[name='csrfHeaderName']").val();
+		var csrfTokenValue = container.find("input[name='csrfToken']").val();
+		
+		//Ajax spring security header...
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		});
 		
 		var registerBtn = $("#registerBtn");
 		
@@ -90,6 +90,8 @@
                     <input type="text" name="username" placeholder="사용자 이름">
                     <input type="password" name="password" placeholder="비밀번호">
                     <button id="registerBtn" type="button">가입</button>
+                    <input type="hidden" name="csrfHeaderName" value='${_csrf.headerName}'>
+      				<input type="hidden" name="csrfToken" value='${_csrf.token}'>
                 </form>
 
                 <ul>

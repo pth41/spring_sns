@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.pth.mapper.ReplyMapper">
+	<insert id="insert">
+		insert into tbl_reply(reply_no, post_no, user_no, email, reply_content)
+		values (seq_reply.nextval, #{post_no}, #{user_no}, #{email}, #{reply_content})
+	</insert>
+	
+	<select id="read" resultType="org.pth.domain.ReplyVO">
+		select * from tbl_reply where reply_no = #{reply_no}
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_reply where reply_no = #{reply_no}
+	</delete>
+	
+	<update id="update">
+		update tbl_reply set reply_content = #{reply_content}, modDate = sysdate where reply_no = #{reply_no}
+	</update>
+	
+	<select id="getListWithPaging" resultType="org.pth.domain.ReplyVO">
+		<![CDATA[
+		select reply_no, post_no, reply_content, email, regDate, modDate
+		from
+			(
+			select /*+INDEX(tbl_reply idx_reply) */
+				rownum rn, reply_no, post_no, reply_content, email, regDate, modDate
+			from tbl_reply
+			where post_no = #{post_no}
+			and rno > 0
+			and rownum <= #{cri.pageNum} * #{cri.amount}
+			) where rn > (#{cri.pageNum} -1) * #{cri.amount}
+		]]>
+	</select>
+	
+	<select id="getCountByPostNo" resultType="int">
+		<![CDATA[
+		select count(reply_no) from tbl_reply where post_no = #{post_no}
+		]]>
+	</select>
+</mapper>

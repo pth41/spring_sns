@@ -83,19 +83,15 @@
               border: 1px solid #efefef;
               margin: 1rem;
           }
+        
+        .alert {
+        	display: none;
+        }
     </style>
 	
     <script>
 		$(document).ready(function(){
 			console.log(userService);
-			
-			var csrfHeaderName = "${_csrf.headerName}";
-			var csrfTokenValue = "${_csrf.token}";
-			
-			//Ajax spring security header...
-			$(document).ajaxSend(function(e, xhr, options) {
-				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-			});
 			
 			$("input").filter("[value=null]").val(""); //input null 필터
 			
@@ -107,6 +103,14 @@
 			var inputPhoneNum = container.find("input[name='phoneNum']");
 			var inputPassword = container.find("input[name='password']");
 			var inputPasswordConfirm = container.find("input[name='password_confirm']");
+			
+			var csrfHeaderName = container.find("input[name='csrfHeaderName']").val();
+			var csrfTokenValue = container.find("input[name='csrfToken']").val();
+			
+			//Ajax spring security header...
+			$(document).ajaxSend(function(e, xhr, options) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			});
 			
 			var userno = Number(inputUserno.val());
 			
@@ -216,6 +220,8 @@
               <input class="form-control" type="password" name="password_confirm" value=''>
             </div>
           </div>
+          <input type="hidden" name="csrfHeaderName" value='${_csrf.headerName}'>
+          <input type="hidden" name="csrfToken" value='${_csrf.token}'>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
