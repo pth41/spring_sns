@@ -13,5 +13,5 @@ public interface ReplyMapper {
 	
 	public int update(ReplyVO vo);
 	
-	public List<ReplyVO> getList();
+	public List<ReplyVO> getList(Long post_no);
 }
