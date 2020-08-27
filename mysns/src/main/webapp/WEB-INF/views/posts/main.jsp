@@ -18,6 +18,7 @@
 	  <!-- ajax_module -->
 	  <script src="/resources/js/user.js"></script>
 	  <script src="/resources/js/post.js"></script>
+	  <script src="/resources/js/reply.js"></script>
 	  
 	  <script>
 	  	function goProfile(unTag) {	//username 클릭시 profile 이동
