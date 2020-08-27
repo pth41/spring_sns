@@ -5,7 +5,7 @@ import java.util.List;
 import org.pth.domain.ReplyVO;
 
 public interface ReplyMapper {
-	public int insert();
+	public int insert(ReplyVO vo);
 	
 	public ReplyVO read(Long reply_no);
 	
