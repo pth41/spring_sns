@@ -29,6 +29,16 @@
 		$(document).ready(function(){
 			console.log(userService);
 			
+			var container = $(".container");
+			
+			var csrfHeaderName = container.find("input[name='csrfHeaderName']").val();
+			var csrfTokenValue = container.find("input[name='csrfToken']").val();
+			
+			//Ajax spring security header...
+			$(document).ajaxSend(function(e, xhr, options) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			});
+			
 			$("input").filter("[value=null]").val(""); //input null 필터
 			
 			var divRight = $(".right_user");
@@ -355,6 +365,10 @@
   </head>
 
   <body>
+  	<div class="container">
+  		<input type="hidden" name="csrfHeaderName" value='${_csrf.headerName}'>
+      	<input type="hidden" name="csrfToken" value='${_csrf.token}'>
+  	</div>
       <div class="nav_container">
           <div class="left">
                <i id="insta_icon" class="fab fa-instagram"></i><h2 id="pthgram"><a href="/posts/main">Pthgram</a></h2>
