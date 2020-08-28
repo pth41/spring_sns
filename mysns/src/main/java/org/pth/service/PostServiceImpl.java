@@ -51,4 +51,10 @@ public class PostServiceImpl implements PostService {
 		
 		return mapper.getList();
 	}
+	
+	@Override
+	public int countPost(Long user_no) {
+		
+		return mapper.getCountByUserNo(user_no);
+	}
 }

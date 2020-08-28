@@ -14,4 +14,6 @@ public interface PostService {
 	public int remove(Long post_no);
 	
 	public List<PostVO> getList();
+	
+	public int countPost(Long user_no);
 }
