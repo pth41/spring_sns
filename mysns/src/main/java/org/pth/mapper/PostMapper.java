@@ -14,4 +14,6 @@ public interface PostMapper {
 	public int update(PostVO vo);
 	
 	public List<PostVO> getList();
+	
+	public int getCountByUserNo(Long user_no);
 }
