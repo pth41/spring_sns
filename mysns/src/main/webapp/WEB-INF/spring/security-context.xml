@@ -17,9 +17,9 @@
 		<security:intercept-url pattern="/users/new" access="permitAll"/>
 		<security:intercept-url pattern="/users/profile/*" access="permitAll"/>
 		<security:intercept-url pattern="/users/profiles/*" access="permitAll"/>
+		<security:intercept-url pattern="/replies/**" access="hasRole('ROLE_USER')"/>
 		<security:intercept-url pattern="/posts/**" access="hasRole('ROLE_USER')"/>
 		<security:intercept-url pattern="/users/**" access="hasRole('ROLE_USER')"/>
-		<security:intercept-url pattern="/replies/**" access="hasRole('ROLE_USER')"/>
 		
 		<security:form-login login-page="/authlogin" authentication-success-handler-ref="customLoginSuccess"/>
 		<security:logout logout-url="/logout" invalidate-session="true"/>
