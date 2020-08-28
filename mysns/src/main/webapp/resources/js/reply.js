@@ -54,7 +54,7 @@ var replyService = (function(){
 	}
 	
 	function update(reply, callback, error) {
-		console.log("RNO: "+reply.reply_no);
+		console.log("Reply_no: "+reply.reply_no);
 		
 		$.ajax({
 			type : 'put',
