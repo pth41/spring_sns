@@ -6,6 +6,8 @@
 <!doctype html>
 <html>
   <head>
+  	  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+      <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -29,17 +31,13 @@
 		$(document).ready(function(){
 			console.log(userService);
 			
-			var container = $(".container");
-			
-			var csrfHeaderName = container.find("input[name='csrfHeaderName']").val();
-			var csrfTokenValue = container.find("input[name='csrfToken']").val();
+			var csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
+			var csrfTokenValue = $("meta[name='_csrf']").attr("content");
 			
 			//Ajax spring security header...
 			$(document).ajaxSend(function(e, xhr, options) {
 				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 			});
-			
-			$("input").filter("[value=null]").val(""); //input null 필터
 			
 			var divRight = $(".right_user");
 			var inputUserno = divRight.find("input[name='user_no']");
@@ -95,11 +93,11 @@
 	                    str +=     'comment2<br>';
 	                    str += '</div>';
 	                    str += '<div class="comment_form">';
-	                    str += '   <form class="regform" name="regform'+i+'" method="post">';
+	                    str += '   <div class="regform" >';
 	                    str += '	   <input type="hidden" name="post_no" value="'+list[i].post_no+'">';
 	                    str += '       <input name="reply_content" class="replyInput type="text" placeholder="댓글 입력...">';
 	                    str += '	   <button class="replyBtn">게시</button>';
-	                    str += '   </form>';
+	                    str += '   </div>';
 	                    str += '</div>';
 	                	str += '</div>';
 	                	
@@ -116,19 +114,22 @@
 			
 			var inputEmail = divRight.find("input[name='email']");
 
-			$(".replyBtn").on("click", function(e) {
+			$(document).on("click",".replyBtn",function(e) {
 				var rform = $(this).parent();
-				var postno = rform.find('[name=post_no]').val();
+				var postnostr = rform.find('[name=post_no]').val();
+				var postno = Number(postnostr);
 				var reply_content = rform.find('[name=reply_content]').val();
 				
 				var reply = {
-						post_no : Number(postno),
+						post_no : postno,
 						user_no : userno,
 						email : inputEmail.val(),
-						reply_content : inputReplyContent.val()
+						reply_content : reply_content
 					};
 				replyService.add(reply, function(result){
 					alert("RESULT: " + result);
+					
+					location.href="/posts/main";
 				});
 			});
 			
@@ -263,20 +264,20 @@
               padding-bottom: 1rem;
           }
           
-          .comment_form form{
+          .comment_form div{
               padding-bottom: 0px;
               display: flex;
               flex-direction: row;
           }
           
-          .comment_form form input{
+          .comment_form div input{
               width: 550px;
               height: 30px;
               border: none;
               padding-left: 15px;
           }
           
-          .comment_form form #sumbit{
+          .comment_form div #sumbit{
               border: none;
               background-color: white;
           }
@@ -364,10 +365,6 @@
   </head>
 
   <body>
-  	<div class="container">
-  		<input type="hidden" name="csrfHeaderName" value='${_csrf.headerName}'>
-      	<input type="hidden" name="csrfToken" value='${_csrf.token}'>
-  	</div>
       <div class="nav_container">
           <div class="left">
                <i id="insta_icon" class="fab fa-instagram"></i><h2 id="pthgram"><a href="/posts/main">Pthgram</a></h2>
