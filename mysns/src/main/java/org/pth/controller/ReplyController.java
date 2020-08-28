@@ -29,6 +29,15 @@ public class ReplyController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private ReplyService service;
+	
+	@GetMapping(value = "/{post_no}",
+			produces = { MediaType.APPLICATION_XML_VALUE,
+						 MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<Integer> getCount(@PathVariable("post_no") Long post_no) {
+		log.info("reply_getCount");
+		
+		return new ResponseEntity<>(service.countReply(post_no), HttpStatus.OK);
+	}
 
 	@GetMapping(value = "/list/{post_no}",
 			produces = { MediaType.APPLICATION_XML_VALUE,

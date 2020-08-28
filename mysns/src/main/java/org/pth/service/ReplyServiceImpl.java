@@ -52,4 +52,8 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.getList(post_no);
 	}
 
+	@Override
+	public int countReply(Long post_no) {
+		return mapper.getCountByPostNo(post_no);
+	}
 }

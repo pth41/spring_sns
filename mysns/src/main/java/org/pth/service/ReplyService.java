@@ -14,4 +14,6 @@ public interface ReplyService {
 	public int remove(Long reply_no);
 	
 	public List<ReplyVO> getList(Long post_no);
+	
+	public int countReply(Long post_no);
 }
