@@ -87,7 +87,7 @@ var replyService = (function(){
 	}
 	
 	function getCount(post_no, callback, error) {
-		$.get("/replies/"+post_no+".json", function(result) {
+		$.get("/replies/count/"+post_no+".json", function(result) {
 			if(callback) {
 				callback(result);
 			}
