@@ -53,8 +53,8 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
-	public int countPost(Long user_no) {
+	public int countPost(String email) {
 		
-		return mapper.getCountByUserNo(user_no);
+		return mapper.getCountByEmail(email);
 	}
 }

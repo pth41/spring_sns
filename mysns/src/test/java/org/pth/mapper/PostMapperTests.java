@@ -24,6 +24,15 @@ public class PostMapperTests {
 	}
 	
 	@Test
+	public void testCount() {
+		String email = "tester";
+		
+		int cnt = mapper.getCountByEmail(email);
+		
+		log.info("post count: "+cnt);
+	}
+	
+	/*@Test
 	public void testCreate() {
 		Long tergetUser_no = 11L;
 		PostVO vo = new PostVO();
@@ -61,5 +70,5 @@ public class PostMapperTests {
 		int count = mapper.update(vo);
 		
 		log.info("UPDATE COUNT: "+count);
-	}
+	}*/
 }

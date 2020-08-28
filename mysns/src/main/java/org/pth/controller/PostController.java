@@ -56,6 +56,15 @@ public class PostController {
 		return new ResponseEntity<>(service.getList(), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/count/{email}",
+			produces = { MediaType.APPLICATION_XML_VALUE,
+						 MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<Integer> getCount(@PathVariable("email") String email) {
+		log.info("post_getCount");
+		
+		return new ResponseEntity<>(service.countPost(email), HttpStatus.OK);
+	}
+	
 	@PostMapping(value = "/new",
 			consumes = "application/json",
 			produces = { MediaType.TEXT_PLAIN_VALUE })

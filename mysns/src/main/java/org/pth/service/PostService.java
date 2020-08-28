@@ -15,5 +15,5 @@ public interface PostService {
 	
 	public List<PostVO> getList();
 	
-	public int countPost(Long user_no);
+	public int countPost(String email);
 }
