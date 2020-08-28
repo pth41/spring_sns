@@ -46,7 +46,7 @@
 	
 	<select id="getCountByEmail" resultType="int">
 		<![CDATA[
-		select count(*) from tbl_post where email = #{email}
+		select count(post_no) from tbl_post where email = #{email}
 		]]>
 	</select>
 </mapper>
