@@ -43,4 +43,10 @@
 		order by post_no desc
 	]]>
 	</select>
+	
+	<select id="getCountByUserNo" resultType="int">
+		<![CDATA[
+		select count(post_no) from tbl_post where user_no = #{user_no}
+		]]>
+	</select>
 </mapper>
