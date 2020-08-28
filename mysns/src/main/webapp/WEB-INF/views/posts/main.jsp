@@ -85,7 +85,7 @@
 	                    str += '   </div>';
 	                    str += '</div>';
 	                    str += '<div class="content">';
-	                    str += '   <a class="un user_name'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+list[i].email+'"></a> '+list[i].content+'<br>';
+	                    str += '   <a class="un-s user_name'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+list[i].email+'"></a> '+list[i].content+'<br>';
 	                    str += '   <a class="time">'+postService.displayTime(list[i].regDate)+'</a>';
 	                    str += '</div>';
 	                    str += '<div class="comment comment'+i+'">';
@@ -101,6 +101,7 @@
 	                	
 	                	let cmDIV = ".comment"+i;
 	                	let cmVal = "";
+	                	cmVal += '<a class="replygo">댓글 모두 보기</a><br>';
 	                	let pn = Number(list[i].post_no);
 	                	
 	                	let em = "";
@@ -111,7 +112,7 @@
 	                		
 	                		userService.getByEmail(em, function(user){
 		    					un = user.username;
-		    					cmVal += '<a class="un" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+em+'">'+un+'</a> '+replyList[0].reply_content+'<br>';
+		    					cmVal += '<a class="un-s" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+em+'">'+un+'</a> '+replyList[0].reply_content+'<br>';
 		    					$(cmDIV).html(cmVal);
 		    				});
 	                	});
@@ -247,9 +248,14 @@
               font-weight: 600;
           }
           
+          .un-s {
+              font-size: 0.9rem;
+              font-weight: 600;
+          }
+          
           .time{
-          	  color: silver;
-          	  font-size: 0.8rem;
+          	  color: gray;
+          	  font-size: 0.7rem;
           	  font-style: normal;
           	  font-weight: bold;
           }
@@ -274,10 +280,19 @@
               justify-content: space-between;
           }
           
-          .comment, .content{
+          .comment{
               margin: 0rem 1rem 1rem 1rem;
               border-bottom: 1px solid #efefef;
               padding-bottom: 1rem;
+          }
+          
+          .content{
+              margin: 0rem 1rem 1rem 1rem;
+          }
+          
+          .replygo{
+          	  color: gray;
+          	  font-size: 0.9rem;
           }
           
           .comment_form div{
