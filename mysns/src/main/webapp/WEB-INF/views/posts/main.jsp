@@ -44,8 +44,8 @@
 			
 			var userno = Number(inputUserno.val());
 			
-			window.onload = function(){	//로그인한 계정 username 표시
-				userService.get(userno, function(user){
+			window.onload = function(){	
+				userService.get(userno, function(user){ //로그인한 계정 username 표시
 					$(".my_username").html(user.username);
 				});
 			};
@@ -64,7 +64,7 @@
 						return;
 					}
 					for(var i=0, len=list.length||0; i<len; i++){
-						const userno = Number(list[i].user_no);
+						let user_no = Number(list[i].user_no);
 						
 						str += '<div class="card">';
 	                    str += '<header class="user">';
@@ -88,9 +88,7 @@
 	                    str += '   <a class="un user_name'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+list[i].email+'"></a> '+list[i].content+'<br>';
 	                    str += '   <a class="time">'+postService.displayTime(list[i].regDate)+'</a>';
 	                    str += '</div>';
-	                    str += '<div class="comment">';
-	                    str +=     'comment1<br>';
-	                    str +=     'comment2<br>';
+	                    str += '<div class="comment comment'+i+'">';
 	                    str += '</div>';
 	                    str += '<div class="comment_form">';
 	                    str += '   <div class="regform" >';
@@ -101,10 +99,28 @@
 	                    str += '</div>';
 	                	str += '</div>';
 	                	
+	                	let cmDIV = ".comment"+i;
+	                	let cmVal = "";
+	                	let pn = Number(list[i].post_no);
+	                	
+	                	let em = "";
+	                	let un = "";
+            			
+                		replyService.getList(pn, function(replyList){
+	                		em = replyList[0].email;
+	                		
+	                		userService.getByEmail(em, function(user){
+		    					un = user.username;
+		    					cmVal += '<a class="un" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+em+'">'+un+'</a> '+replyList[0].reply_content+'<br>';
+		    					$(cmDIV).html(cmVal);
+		    				});
+	                	});
+	                	
 	                	let unDIV = ".user_name"+i;
-	                	userService.get(userno, function(user){
+	                	userService.get(user_no, function(user){
 							$(unDIV).html(user.username);
 						});
+	                	
 					}
 					
 					cardSection.html(str);
