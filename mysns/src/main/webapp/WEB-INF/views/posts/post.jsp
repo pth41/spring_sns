@@ -7,6 +7,8 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
     <meta name="apple-mobile-web-app-title" content="CodePen">
     <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
@@ -31,6 +33,14 @@
 	}
 	
 	$(document).ready(function(){
+		var csrfHeaderName = $("meta[name='_csrf_header']").attr("content");
+		var csrfTokenValue = $("meta[name='_csrf']").attr("content");
+		
+		//Ajax spring security header...
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		});
+		
 		var pathArray = window.location.pathname.split('/');
 		
 		var pnstr = pathArray[3];
@@ -42,7 +52,7 @@
 				userService.get(user_no, function(user){
 					var str = '<a class="un-s" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+user.email+'">'+user.email+'</a> '+post.content+'<br>';
 					str += '<br><a class="time">'+postService.displayTime(post.regDate)+'</a>';
-					var str2 = '<a class="un-s username-p" href="javascript:void(0)" onclick="goProfile(this);" data-userno="'+user_no+'" data-email="'+user.email+'">'+user.email+'</a>';
+					var str2 = '<a class="un-s username-p" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+user.email+'">'+user.email+'</a>';
 					var time = postService.displayTime(post.regDate);
 					
 					$(".content").html(str);
@@ -85,10 +95,12 @@
 			});
 		}
 		
-		var email = $(".username-p").data("email");
-		var userno = $(".username-p").data("userno");
+		var email = $(".container").find("input[name='email']").val();
+		var userno = $(".container").find("input[name='user_no']").val();
 		
 		$(document).on("click",".replyBtn",function(e) {
+			alert(email);
+			alert(userno);
 			var rform = $(this).parent();
 			var reply_content = rform.find('[name=reply_content]').val();
 			
@@ -332,6 +344,8 @@
     </div>
 </header>
 <div class="container">
+	<input type="hidden" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
+    <input type="hidden" name="email" value='<sec:authentication property="principal.user.email"/>'>
     <br>
   	<br>
 	<div class="post">
