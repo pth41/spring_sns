@@ -40,9 +40,9 @@
 			postService.get(post_no, function(post){
 				var user_no = Number(post.user_no);
 				userService.get(user_no, function(user){
-					var str = '<a class="un-s user_name" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+user.email+'">'+user.email+'</a> '+post.content+'<br>';
+					var str = '<a class="un-s" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+user.email+'">'+user.email+'</a> '+post.content+'<br>';
 					str += '<br><a class="time">'+postService.displayTime(post.regDate)+'</a>';
-					var str2 = '<a class="un-s user_name" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+user.email+'">'+user.email+'</a>';
+					var str2 = '<a class="un-s username-p" href="javascript:void(0)" onclick="goProfile(this);" data-userno="'+user_no+'" data-email="'+user.email+'">'+user.email+'</a>';
 					var time = postService.displayTime(post.regDate);
 					
 					$(".content").html(str);
@@ -84,6 +84,27 @@
 				
 			});
 		}
+		
+		var email = $(".username-p").data("email");
+		var userno = $(".username-p").data("userno");
+		
+		$(document).on("click",".replyBtn",function(e) {
+			var rform = $(this).parent();
+			var reply_content = rform.find('[name=reply_content]').val();
+			
+			var reply = {
+					post_no : post_no,
+					user_no : userno,
+					email : email,
+					reply_content : reply_content
+				};
+			replyService.add(reply, function(result){
+				alert("RESULT: " + result);
+				
+				location.reload();
+			});
+		});
+		
 	});
 	</script>
 	
@@ -324,7 +345,7 @@
             </div>
             <hr>
             <div class="content">
-            	  <a class="user_name">username</a> content<br>
+            	  <a class="">username</a> content<br>
             </div>
             <div class="comment">
                 comment1<br>
@@ -343,7 +364,7 @@
             </div>
             <div class="comment_form">
                 <div class="regform" >
-                    <input class="replyInput" type="text" placeholder="댓글 입력..." value="">
+                    <input name="reply_content" class="replyInput" type="text" placeholder="댓글 입력..." value="">
                     <button class="replyBtn">게시</button>
                 </div>
             </div>
