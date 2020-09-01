@@ -76,8 +76,9 @@
 	                    str += '</div>';
 	                    str += '<div class="info">';
 	                    str += '   <div class="info_left">';
+	                    str += '	   <input type="hidden" name="post_no" value="'+list[i].post_no+'">';
 	                    str += '       <i class="far fa-heart"></i>';
-	                    str += '       <i class="far fa-comment"></i>';
+	                    str += '       <i class="far fa-comment postgo"></i>';
 	                    str += '       <i class="fas fa-upload"></i>';
 	                    str += '   </div>';
 	                    str += '   <div class="info_right">';
@@ -100,8 +101,8 @@
 	                	str += '</div>';
 	                	
 	                	let cmDIV = ".comment"+i;
-	                	let cmVal = "";
-	                	cmVal += '<a class="replygo">댓글 모두 보기</a><br>';
+	                	let cmVal = '<input type="hidden" name="post_no" value="'+list[i].post_no+'">';
+	                	cmVal += '<a class="replygo postgo">댓글 모두 보기</a><br>';
 	                	let pn = Number(list[i].post_no);
 	                	
 	                	let em = "";
@@ -148,6 +149,14 @@
 					
 					location.href="/posts/main";
 				});
+			});
+			
+			$(document).on("click",".postgo",function(e) {
+				var rform = $(this).parent();
+				var postnostr = rform.find('[name=post_no]').val();
+				var postno = Number(postnostr);
+				
+				location.href="/posts/p/"+postno;
 			});
 			
 		});
@@ -391,6 +400,10 @@
           
           .replyBtn:hover {
           	  font-weight: bolder;
+          }
+          
+          .postgo {
+          	  cursor: pointer;
           }
       </style>
   </head>
