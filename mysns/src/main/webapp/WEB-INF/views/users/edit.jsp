@@ -208,7 +208,7 @@
               <input class="form-control" type="text" name="username" value=''>
             </div>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label class="col-md-3 control-label">비밀번호:</label>
             <div class="col-md-8">
               <input class="form-control" type="password" name="password" value=''>
@@ -219,7 +219,7 @@
             <div class="col-md-8">
               <input class="form-control" type="password" name="password_confirm" value=''>
             </div>
-          </div>
+          </div> -->
           <input type="hidden" name="csrfHeaderName" value='${_csrf.headerName}'>
           <input type="hidden" name="csrfToken" value='${_csrf.token}'>
           <div class="form-group">
