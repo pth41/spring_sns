@@ -96,13 +96,24 @@ var postService = (function(){
 		var dateObj = new Date(timeValue);
 		var str = "";
 		
-		if(gap < (1000 * 60 * 60 * 24)) {
-			var hh = dateObj.getHours();
+		if(gap < (1000 * 60)){
+			return '방금 전';
+		} else if(gap < (1000 * 60 * 60)){
+			var m = dateObj.getMinutes();
+			return m+'분 전';
+		} else if(gap < (1000 * 60 * 60 * 24)) {
+			var h = dateObj.getHours();
+			/*var hh = dateObj.getHours();
 			var mi = dateObj.getMinutes();
 			var ss = dateObj.getSeconds();
 			
-			return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi, ':', (ss > 9 ? '' : '0') + ss ].join('');
+			return [ (hh > 9 ? '' : '0') + hh, ':', (mi > 9 ? '' : '0') + mi, ':', (ss > 9 ? '' : '0') + ss ].join('');*/
+			return h+'시간 전';
+		} else if(gap < (1000 * 60 * 60 * 24 * 7)){
+			var d = Math.floor(gap / 1000 / 60 / 60 / 24);
+			return d+'일 전';
 		} else {
+		
 			var yy = dateObj.getFullYear();
 			var mm = dateObj.getMonth() + 1; // getMonth() is zero-based
 			var dd = dateObj.getDate();
