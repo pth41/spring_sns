@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <title>signup</title>
     <link rel="stylesheet" href="/resources/css/signup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
 </head>
 
 <!-- jQuery -->
@@ -70,11 +71,17 @@
 	});
 </script>
 
+<style>
+	.logo{
+		font-family: 'Sriracha', cursive;
+	}
+</style>
+
 <body>
     <main>
         <div class="page">
             <div class="header">
-                <h1 class="logo">PTHgram</h1>
+                <h1 class="logo">Pthgram</h1>
                 <p>친구들의 사진과 동영상을 보려면 가입하세요.</p>
                 <button><i class="fab fa-facebook-square"></i> Facebook으로 로그인</button>
                 <div>
@@ -95,7 +102,7 @@
                 </form>
 
                 <ul>
-                    <li>가입하면 PTHgram의</li>
+                    <li>가입하면 PTHGRAM의</li>
                     <li><a href="">약관,</a></li>
                     <li><a href="">데이터 정책</a></li>
                     <li>및</li>
@@ -107,9 +114,9 @@
             <p>계정이 있으신가요? <a href="/authlogin">로그인</a></p>
         </div>
         <div class="otherapps">
-            <p>Get the app.</p>
+           <!--  <p>Get the app.</p>
             <button type="button"><i class="fab fa-apple"></i> App Store</button>
-            <button type="button"><i class="fab fa-google-play"></i> Google Play</button>
+            <button type="button"><i class="fab fa-google-play"></i> Google Play</button> -->
         </div>
         <div class="footer">
             <ul>
@@ -125,7 +132,7 @@
                 <li><a href="">HASHTAGS</a></li>
                 <li><a href="">LANGUAGE</a></li>
             </ul>
-            <p>© 2020 PICTUREGRAM</p>
+            <p>© 2020 PTHGRAM</p>
         </div>
     </main>
 </body>
