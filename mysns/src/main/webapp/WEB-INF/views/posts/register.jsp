@@ -41,16 +41,22 @@
 			var userno = Number(inputUserno.val());
 
 			$("#registerBtn").on("click", function(e) {
-				var post = {
-						user_no : userno,
-						email : inputEmail.val(),
-						content : inputContent.val()
+				if(!(inputContent.val())){
+					alert('내용을 입력하세요.');
+					return;
+				}else{
+					var post = {
+							user_no : userno,
+							email : inputEmail.val(),
+							content : inputContent.val()
 					};
-				postService.add(post, function(result){
-					alert("RESULT: " + result);
 					
-					location.href='/posts/main';
-				});
+					postService.add(post, function(result){
+						alert("RESULT: " + result);
+						
+						location.href='/posts/main';
+					});
+				}
 			});
 			
 		});
