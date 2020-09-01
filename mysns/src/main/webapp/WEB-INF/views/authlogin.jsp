@@ -28,7 +28,7 @@
 
     <div class="login">
 
-        <h1 class="logo">PTHGRAM</h1>
+        <h1 class="logo">Pthgram</h1>
         <h3><c:out value="${error}"/></h3>
         <h3><c:out value="${logout}"/></h3>
 
