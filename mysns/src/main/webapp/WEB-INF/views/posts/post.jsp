@@ -99,22 +99,25 @@
 		var userno = $(".container").find("input[name='user_no']").val();
 		
 		$(document).on("click",".replyBtn",function(e) {
-			alert(email);
-			alert(userno);
 			var rform = $(this).parent();
 			var reply_content = rform.find('[name=reply_content]').val();
 			
-			var reply = {
-					post_no : post_no,
-					user_no : userno,
-					email : email,
-					reply_content : reply_content
-				};
-			replyService.add(reply, function(result){
-				alert("RESULT: " + result);
-				
-				location.reload();
-			});
+			if(!reply_content){
+				alert('댓글을 입력하세요.');
+				return;
+			}else {
+				var reply = {
+						post_no : post_no,
+						user_no : userno,
+						email : email,
+						reply_content : reply_content
+					};
+				replyService.add(reply, function(result){
+					alert("RESULT: " + result);
+					
+					location.reload();
+				});
+			}
 		});
 		
 	});

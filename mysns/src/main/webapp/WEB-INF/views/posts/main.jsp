@@ -138,17 +138,22 @@
 				var postno = Number(postnostr);
 				var reply_content = rform.find('[name=reply_content]').val();
 				
-				var reply = {
-						post_no : postno,
-						user_no : userno,
-						email : inputEmail.val(),
-						reply_content : reply_content
-					};
-				replyService.add(reply, function(result){
-					alert("RESULT: " + result);
-					
-					location.href="/posts/main";
-				});
+				if(!reply_content){
+					alert('댓글을 입력하세요.');
+					return;
+				}else {
+					var reply = {
+							post_no : postno,
+							user_no : userno,
+							email : inputEmail.val(),
+							reply_content : reply_content
+						};
+					replyService.add(reply, function(result){
+						alert("RESULT: " + result);
+						
+						location.href="/posts/main";
+					});
+				}
 			});
 			
 			$(document).on("click",".postgo",function(e) {
