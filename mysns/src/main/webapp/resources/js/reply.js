@@ -109,10 +109,10 @@ var replyService = (function(){
 		if(gap < (1000 * 60)){
 			return '방금 전';
 		} else if(gap < (1000 * 60 * 60)){
-			var m = dateObj.getMinutes();
+			var m = 60 - dateObj.getMinutes();
 			return m+'분 전';
 		} else if(gap < (1000 * 60 * 60 * 24)) {
-			var h = dateObj.getHours();
+			var h = Math.floor(gap / 1000 / 60 / 60);
 			/*var hh = dateObj.getHours();
 			var mi = dateObj.getMinutes();
 			var ss = dateObj.getSeconds();
