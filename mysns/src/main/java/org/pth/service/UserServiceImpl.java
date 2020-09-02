@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public int changePwd(UserVO vo) {
-		log.info("User_modify...."+vo);
+		log.info("User_change_password...."+vo);
 		
 		vo.setPassword(pwencoder.encode(vo.getPassword())); //password encoder Ã³¸®
 		
