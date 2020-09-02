@@ -55,6 +55,6 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public int countPost(String email) {
 		
-		return mapper.getCountByEmail(email);
+		return mapper.getCount(email);
 	}
 }
