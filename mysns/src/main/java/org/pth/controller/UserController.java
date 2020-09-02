@@ -39,6 +39,11 @@ public class UserController {
 		return new ModelAndView("users/edit");
 	}
 	
+	@GetMapping("/edit/pwd")
+	public ModelAndView editPw() throws Exception {
+		return new ModelAndView("users/editPw");
+	}
+	
 	@GetMapping("/profile/*")
 	public ModelAndView profile() throws Exception {
 		return new ModelAndView("users/profile");
