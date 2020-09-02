@@ -59,6 +59,27 @@ var userService = (function(){
 		});
 	}
 	
+	function updatePwd(user, callback, error) {
+		console.log("user_no: "+user.user_no);
+		
+		$.ajax({
+			type : 'put',
+			url : '/users/pwd/'+user.user_no,
+			data : JSON.stringify(user),
+			contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr) {
+				if(callback) {
+					callback(result);
+				}
+			},
+			error : function(xhr, status, er) {
+				if(error) {
+					error(er);
+				}
+			}
+		});
+	}
+	
 	function get(user_no, callback, error) {
 		$.get("/users/"+user_no+".json", function(result) {
 			if(callback) {
