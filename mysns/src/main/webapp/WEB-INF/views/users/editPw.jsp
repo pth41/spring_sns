@@ -116,16 +116,22 @@
 			var modifyBtn = $("#modifyBtn");
 			
 			modifyBtn.on("click", function(e) {
-				var user = {
+				
+				var usernew = {
 						user_no : userno,
 						password : inputPasswordNew.val()
-					};
-				userService.update(user, function(result){
-					alert("RESULT: " + result);
+				};
+				
+				if(inputPasswordNew.val() == inputPasswordConfirm.val()){
 					
-					location.replace('/users/edit');
-				});
+					userService.updatePwd(usernew, function(result){
+						alert("RESULT: " + result);
+						location.reload();
+					});
+				}
+				
 			});
+			
 		});
     </script>
 </head>
