@@ -59,6 +59,17 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public int changePwd(UserVO vo) {
+		log.info("User_modify...."+vo);
+		
+		vo.setPassword(pwencoder.encode(vo.getPassword())); //password encoder Ã³¸®
+		
+		int changePwdCount = mapper.updatePwd(vo);
+		
+		return changePwdCount;
+	}
+	
+	@Override
 	public int remove(Long user_no) {
 		log.info("User_remove...."+user_no);
 		

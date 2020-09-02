@@ -11,5 +11,7 @@ public interface UserService {
 	
 	public int modify(UserVO vo);
 	
+	public int changePwd(UserVO vo);
+	
 	public int remove(Long user_no);
 }
