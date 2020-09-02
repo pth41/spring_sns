@@ -15,4 +15,6 @@ public interface UserMapper {
 	public int delete(Long user_no);
 	
 	public int update(UserVO vo);
+	
+	public int updatePwd(UserVO vo);
 }
