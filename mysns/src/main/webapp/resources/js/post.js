@@ -88,6 +88,18 @@ var postService = (function(){
 		});
 	}
 	
+	function getCount(email, callback, error) {
+		$.get("/posts/count/"+email+".json", function(result) {
+			if(callback) {
+				callback(result);
+			}
+		}).fail(function(xhr, status, err) {
+			if(error) {
+				error();
+			}
+		});
+	}
+	
 	function displayTime(timeValue) {
 		var today = new Date();
 		
