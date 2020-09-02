@@ -109,4 +109,17 @@ public class UserMapperTests {
 		
 		log.info("UPDATE COUNT: "+count);
 	}
+	
+	@Test
+	public void testUpdatePwd() {
+		Long targerUser_no = 2L;
+		
+		UserVO vo = mapper.read(targerUser_no);
+		
+		vo.setPassword(pwencoder.encode("123123"));
+		
+		int count = mapper.updatePwd(vo);
+		
+		log.info("UPDATE PASSWORD COUNT: "+count);
+	}
 }
