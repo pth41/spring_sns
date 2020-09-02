@@ -63,4 +63,12 @@
 		where
 			user_no = #{user_no}
 	</update>
+	
+	<update id="updatePwd">
+		update tbl_user
+		set
+			password = #{password}
+		where
+			user_no = #{user_no}
+	</update>
 </mapper>
