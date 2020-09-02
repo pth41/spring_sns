@@ -75,4 +75,13 @@ public class UserServiceImpl implements UserService {
 		
 		return mapper.delete(user_no);
 	}
+	
+	@Override
+	public boolean checkPwd(UserVO vo) {
+		log.info("check pwd");
+		
+		UserVO encoded = mapper.read(vo.getUser_no()); 
+		
+		return pwencoder.matches(vo.getPassword(), encoded.getPassword());
+	}
 }
