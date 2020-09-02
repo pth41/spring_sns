@@ -82,6 +82,14 @@ public class UserController {
 		return new ResponseEntity<>(service.getByEmail(email), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/check",
+			produces = { MediaType.APPLICATION_XML_VALUE,
+						 MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<Boolean> checkPwd(@RequestBody UserVO vo) {
+		
+		return new ResponseEntity<>(service.checkPwd(vo), HttpStatus.OK);
+	}
+	
 	@DeleteMapping(value = "/{user_no}",
 			produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> remove(@PathVariable("user_no") Long user_no) {
