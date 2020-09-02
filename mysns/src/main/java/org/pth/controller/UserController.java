@@ -105,4 +105,18 @@ public class UserController {
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	@RequestMapping(method = { RequestMethod.PUT, RequestMethod.PATCH },
+			value = "/pwd/{user_no}",
+			consumes = "application/json",
+			produces = { MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String> changePwd(@RequestBody UserVO vo, @PathVariable("user_no") Long user_no) {
+		vo.setUser_no(user_no);
+		log.info("user_no: "+user_no);
+		log.info("user_changePwd: "+vo);
+		
+		return service.changePwd(vo) == 1
+				? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
