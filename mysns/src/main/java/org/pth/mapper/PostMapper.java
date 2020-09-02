@@ -15,5 +15,5 @@ public interface PostMapper {
 	
 	public List<PostVO> getList();
 	
-	public int getCountByEmail(String email);
+	public int getCount(String email);
 }
