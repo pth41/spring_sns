@@ -36,7 +36,7 @@
 	
 	<select id="readByEmail" resultMap="userMap">
 		select
-			mem.email, user_no, password, name, username, phoneNum, enabled, regDate, auth
+			mem.email, user_no, password, name, username, phoneNum, description, enabled, regDate, auth
 		from
 			tbl_user mem LEFT OUTER JOIN tbl_user_auth auth on mem.email = auth.email
 		where mem.email = #{email}
@@ -59,7 +59,8 @@
 			</choose> -->
 			name = #{name},
 			username = #{username},
-			phoneNum = #{phoneNum}
+			phoneNum = #{phoneNum},
+			description = #{description}
 		where
 			user_no = #{user_no}
 	</update>
