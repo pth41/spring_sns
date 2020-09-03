@@ -83,6 +83,18 @@
         .alert {
         	display: none;
         }
+        
+        .pa1 {
+        	margin-right: 5rem;
+        	font-weight: bold;
+        }
+        
+        .pa2 {
+        	margin-top: 0.5rem;
+        	background-color: black;
+        	height: 4px;
+        	width: 75px;
+        }
     </style>
 	
     <script>
@@ -161,6 +173,12 @@
 	<hr>
 	<hr>
     <h1>프로필 수정</h1>
+  	<hr>
+  	<div class="pa">
+  		<a href="/users/edit" class="pa1">프로필 수정</a>
+  		<a href="/users/edit/pwd" >비밀번호 변경</a>
+  	</div>
+  	<div class="pa2"></div>
   	<hr>
 	<div class="row">
       <!-- left column -->
