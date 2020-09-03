@@ -255,6 +255,7 @@
         .user {
             display: flex;
             align-items: center;
+            z-index: 1;
         }
         
         .user_name, .un-s{
@@ -326,6 +327,16 @@
         	margin-left: 0.8rem;
         	margin-bottom: 1rem;
         }
+        
+        .menuBtn {
+        	margin-left: 14rem;
+        	cursor: pointer;
+        }
+        
+        .menu {
+        	position: relative;
+        	z-index: 2;
+        }
     </style>
 </head>
 <header>
@@ -359,6 +370,11 @@
             <div class="user">
                 <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">
                 <div class="user_name">username</div>
+                <i class="fas fa-ellipsis-v menuBtn"></i>
+                <div class="menu">
+               		<a>수정</a>
+               		<a>삭제</a>
+               	</div>
             </div>
             <hr>
             <div class="content">
