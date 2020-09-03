@@ -16,4 +16,6 @@ public interface PostMapper {
 	public List<PostVO> getList();
 	
 	public int getCount(String email);
+	
+	public int deleteReplyInPost(Long post_no);
 }

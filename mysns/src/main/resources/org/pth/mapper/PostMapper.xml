@@ -25,6 +25,10 @@
 		delete from tbl_post where post_no = #{post_no}
 	</delete>
 	
+	<delete id="deleteReplyInPost">
+		delete from tbl_reply where post_no = #{post_no}
+	</delete>
+	
 	<update id="update">
 		update tbl_post
 		set

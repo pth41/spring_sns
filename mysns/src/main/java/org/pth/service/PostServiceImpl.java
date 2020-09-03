@@ -42,6 +42,8 @@ public class PostServiceImpl implements PostService {
 	public int remove(Long post_no) {
 		log.info("Post_remove...."+post_no);
 		
+		mapper.deleteReplyInPost(post_no);
+		
 		return mapper.delete(post_no);
 	}
 	
