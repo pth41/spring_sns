@@ -106,7 +106,7 @@ var userService = (function(){
 	
 	function checkPwd(user, callback, error) {
 		$.ajax({
-			type : 'get',
+			type : 'post',
 			url : '/users/check',
 			data : JSON.stringify(user),
 			contentType : "application/json; charset=utf-8",

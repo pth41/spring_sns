@@ -82,7 +82,7 @@ public class UserController {
 		return new ResponseEntity<>(service.getByEmail(email), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/check",
+	@PostMapping(value = "/check",
 			consumes = "application/json",
 			produces = { MediaType.APPLICATION_XML_VALUE,
 						 MediaType.APPLICATION_JSON_UTF8_VALUE })
