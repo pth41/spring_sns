@@ -97,6 +97,7 @@
 			var inputName = container.find("input[name='name']");
 			var inputUsername = container.find("input[name='username']");
 			var inputPhoneNum = container.find("input[name='phoneNum']");
+			var inputDescription = container.find("input[name='description']");
 			var inputPassword = container.find("input[name='password']");
 			var inputPasswordConfirm = container.find("input[name='password_confirm']");
 			
@@ -115,6 +116,7 @@
 			userService.get(userno, function(user){
 				inputName.val(user.name);
 				inputPhoneNum.val(user.phoneNum);
+				inputDescription.val(user.description);
 				inputUsername.val(user.username);
 			});
 			
@@ -124,7 +126,8 @@
 							email : inputEmail.val(),
 							name : inputName.val(),
 							username : inputUsername.val(),
-							phoneNum : inputPhoneNum.val()
+							phoneNum : inputPhoneNum.val(),
+							description : inputDescription.val()
 						};
 					userService.update(user, function(result){
 						alert("RESULT: " + result);
@@ -181,9 +184,21 @@
         <input type="hidden" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
         <form class="form-horizontal" role="form">
           <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" readonly="readonly" type="text" name="email" value='<sec:authentication property="principal.user.email"/>'>
+            </div>
+          </div>
+          <div class="form-group">
             <label class="col-lg-3 control-label">이름:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" name="name" value=''>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">사용자이름:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" name="username" value=''>
             </div>
           </div>
           <div class="form-group">
@@ -193,15 +208,9 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Email:</label>
+            <label class="col-lg-3 control-label">소개:</label>
             <div class="col-lg-8">
-              <input class="form-control" readonly="readonly" type="text" name="email" value='<sec:authentication property="principal.user.email"/>'>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">사용자이름:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" name="username" value=''>
+              <input class="form-control" type="text" name=description value=''>
             </div>
           </div>
           <!-- <div class="form-group">
