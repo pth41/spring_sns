@@ -46,6 +46,9 @@
 		var pnstr = pathArray[3];
 		var post_no = Number(pnstr);
 		
+		var email = $(".container").find("input[name='email']").val(); //로그인 email
+		var userno = $(".container").find("input[name='user_no']").val(); //로그인 user_no
+		
 		window.onload = function(){
 			postService.get(post_no, function(post){
 				var user_no = Number(post.user_no);
@@ -59,6 +62,10 @@
 					$(".times").html(time);
 					$(".user_name").html(str2);
 				});
+				
+				if(user_no != userno){
+					$(".menuBtn").css("display","none");
+				}
 			});
 		};
 		
@@ -94,9 +101,6 @@
 				
 			});
 		}
-		
-		var email = $(".container").find("input[name='email']").val();
-		var userno = $(".container").find("input[name='user_no']").val();
 		
 		$(document).on("click",".replyBtn",function(e) {
 			var rform = $(this).parent();
