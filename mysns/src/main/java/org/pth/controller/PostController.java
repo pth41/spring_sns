@@ -47,6 +47,11 @@ public class PostController {
 		return new ModelAndView("posts/register");
 	}
 	
+	@GetMapping("/edit/*")
+	public ModelAndView edit() throws Exception {
+		return new ModelAndView("posts/editPost");
+	}
+	
 	@GetMapping("/p/*")
 	public ModelAndView veiwPost() throws Exception {
 		return new ModelAndView("posts/post");
