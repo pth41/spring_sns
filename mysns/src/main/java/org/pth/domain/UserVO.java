@@ -13,6 +13,7 @@ public class UserVO {
 	private String name;
 	private String username;
 	private String phoneNum;
+	private String description;
 	private Date regDate;
 	private String img_filename;
 	
