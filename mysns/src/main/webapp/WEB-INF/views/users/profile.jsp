@@ -20,6 +20,7 @@
 
 	<!-- ajax_module -->
 	<script src="/resources/js/user.js"></script>
+	<script src="/resources/js/post.js"></script>
 	
 	<script>
 		$(document).ready(function(){
@@ -35,14 +36,6 @@
 			var email = pathArray[3];	//프로필 이메일
 			
 			window.onload = function(){
-				userService.getByEmail(email, function(user){
-					$("#username").html(user.username);
-					$("#name").html(user.name);
-					userService.get(user.user_no, function(us){
-						$(".bio__description").html(us.description);
-					});
-				});
-				
 				if(inputEmail.val() == email){
 					$(".edit").show();
 					$(".logout").show();					
@@ -52,6 +45,18 @@
 					$(".logout").hide();
 					$(".bio__follow").show();
 				}
+				
+				userService.getByEmail(email, function(user){
+					$("#username").html(user.username);
+					$("#name").html(user.name);
+					userService.get(user.user_no, function(us){
+						$(".bio__description").html(us.description);
+					});
+				});
+				
+				postService.getCount(email, function(count){
+					$(".post_count").html(count);
+				});
 			};
 			
 		});
@@ -149,9 +154,9 @@
             
         </div>
         <div class="bio__stats">
-            <span class="bio__posts stats"><strong></strong> 게시물</span>
-            <span class="bio_followers stats"><strong></strong> 팔로워</span>
-            <span class="bio__following stats"><strong></strong> 팔로잉</span>
+            <span class="bio__posts stats">게시물 <strong class="post_count"></strong></span>
+            <span class="bio_followers stats">팔로워 <strong></strong></span>
+            <span class="bio__following stats">팔로잉 <strong></strong></span>
         </div>
         <div class="bio_blurb">
             <h2 class="bio__name" id="name"></h2>
