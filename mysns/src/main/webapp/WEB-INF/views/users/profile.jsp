@@ -38,7 +38,9 @@
 				userService.getByEmail(email, function(user){
 					$("#username").html(user.username);
 					$("#name").html(user.name);
-					$(".bio__description").html(user.description);
+					userService.get(user.user_no, function(us){
+						$(".bio__description").html(us.description);
+					});
 				});
 				
 				if(inputEmail.val() == email){
