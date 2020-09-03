@@ -25,6 +25,11 @@
 		$(document).ready(function(){
 			console.log(postService);
 			
+			var pathArray = window.location.pathname.split('/');
+			
+			var pnstr = pathArray[3];
+			var post_no = Number(pnstr);
+			
 			var container = $(".container");
 			var inputUserno = container.find("input[name='user_no']");
 			var inputEmail = container.find("input[name='email']");
@@ -39,6 +44,16 @@
 			});
 			
 			var userno = Number(inputUserno.val());
+			
+			window.onload = function(){
+				postService.get(post_no, function(post){
+					if(userno != post.user_no){
+						history.go(-1);
+					}else{
+						inputContent.val(post.content);
+					}
+				});
+			}
 
 			$("#registerBtn").on("click", function(e) {
 				if(!(inputContent.val())){
