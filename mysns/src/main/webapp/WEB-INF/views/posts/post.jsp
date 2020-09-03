@@ -151,6 +151,10 @@
 				});
 			}
 		});
+		
+		$(document).on("click", ".updatem", function(e){
+			location.href="/posts/edit/"+post_no;
+		});
 	});
 	
 	</script>
