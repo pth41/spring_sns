@@ -133,11 +133,17 @@
 		
 		$(document).on("click", ".closem", function(e){
 			$("#light").css("display","none");
+			$("#lightR").css("display","none");
 			$("#fade").css("display","none");
 		});
 		
 		$(document).on("click", ".menuBtn", function(e){
 			$("#light").css("display","block");
+			$("#fade").css("display","block");
+		});
+		
+		$(document).on("click", ".menuR", function(e){
+			$("#lightR").css("display","block");
 			$("#fade").css("display","block");
 		});
 		
@@ -408,7 +414,7 @@
 			filter: alpha(opacity=80);
 		}
 		
-		.deletem {
+		.deletem, .deleteR {
 			color: red;
 			font-weight: bold;
 		}
@@ -436,6 +442,11 @@
 <div id="light" class="menu">
    	<div class="updatem">수정</div><hr>
    	<div class="deletem">삭제</div><hr>
+   	<div class="closem">취소</div>
+</div>
+<div id="lightR" class="menu">
+	<br><br>
+   	<div class="deleteR">삭제</div><hr>
    	<div class="closem">취소</div>
 </div>
 <div class="container">
