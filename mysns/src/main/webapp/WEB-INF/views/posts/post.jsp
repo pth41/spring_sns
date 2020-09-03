@@ -120,7 +120,20 @@
 			}
 		});
 		
+		$(document).on("click", ".closem", function(e){
+			$("#light").css("display","none");
+			$("#fade").css("display","none");
+		});
+		
+		$(document).on("click", ".deletem", function(e){
+			var checkDelete = confirm("정말 삭제하시겠습니까?");
+			if(checkDelete){
+				alert("삭제");
+			}
+		});
+		
 	});
+	
 	</script>
 	
     <style>
@@ -336,14 +349,16 @@
         	text-align: center;
 			display: none;
 			position: absolute;
-			top: 30%;
-			left: 37.5%;
-			width: 25%;
+			top: 32%;
+			left: 42%;
+			width: 15%;
 			height: 24%;
 			padding: 16px;
 			background-color: white;
 			z-index:1002;
 			overflow: auto;
+			border-radius: 5%;
+			cursor: pointer;
         }
         
         .black_overlay{
@@ -358,6 +373,11 @@
 			-moz-opacity: 0.8;
 			opacity:.80;
 			filter: alpha(opacity=80);
+		}
+		
+		.deletem {
+			color: red;
+			font-weight: bold;
 		}
     </style>
 </head>
@@ -379,11 +399,11 @@
             <a href='/users/profile/<sec:authentication property="principal.user.email"/>'><i class="far fa-user i"></i></a>
     </div>
 </header>
-<div id="fade" class="black_overlay"></div>
+<div id="fade" class="black_overlay closem"></div>
 <div id="light" class="menu">
-   	<a>수정</a><hr>
-   	<a>삭제</a><hr>
-   	<a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">취소</a>
+   	<div class="updatem">수정</div><hr>
+   	<div class="deletem">삭제</div><hr>
+   	<div class="closem">취소</div>
 </div>
 <div class="container">
 	<input type="hidden" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
