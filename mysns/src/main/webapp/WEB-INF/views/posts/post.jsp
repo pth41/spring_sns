@@ -255,7 +255,6 @@
         .user {
             display: flex;
             align-items: center;
-            z-index: 1;
         }
         
         .user_name, .un-s{
@@ -334,9 +333,32 @@
         }
         
         .menu {
-        	position: relative;
-        	z-index: 2;
+        	text-align: center;
+			display: none;
+			position: absolute;
+			top: 30%;
+			left: 37.5%;
+			width: 25%;
+			height: 24%;
+			padding: 16px;
+			background-color: white;
+			z-index:1002;
+			overflow: auto;
         }
+        
+        .black_overlay{
+			display: none;
+			position: absolute;
+			top: 0%;
+			left: 0%;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			z-index:1001;
+			-moz-opacity: 0.8;
+			opacity:.80;
+			filter: alpha(opacity=80);
+		}
     </style>
 </head>
 <header>
@@ -357,6 +379,12 @@
             <a href='/users/profile/<sec:authentication property="principal.user.email"/>'><i class="far fa-user i"></i></a>
     </div>
 </header>
+<div id="fade" class="black_overlay"></div>
+<div id="light" class="menu">
+   	<a>수정</a><hr>
+   	<a>삭제</a><hr>
+   	<a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">취소</a>
+</div>
 <div class="container">
 	<input type="hidden" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
     <input type="hidden" name="email" value='<sec:authentication property="principal.user.email"/>'>
@@ -370,11 +398,10 @@
             <div class="user">
                 <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">
                 <div class="user_name">username</div>
-                <i class="fas fa-ellipsis-v menuBtn"></i>
-                <div class="menu">
-               		<a>수정</a>
-               		<a>삭제</a>
-               	</div>
+                <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+                	<i class="fas fa-ellipsis-h menuBtn"></i>
+                </a>
+                
             </div>
             <hr>
             <div class="content">
