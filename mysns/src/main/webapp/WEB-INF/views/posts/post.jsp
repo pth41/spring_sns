@@ -50,9 +50,9 @@
 			postService.get(post_no, function(post){
 				var user_no = Number(post.user_no);
 				userService.get(user_no, function(user){
-					var str = '<a class="un-s" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+user.email+'">'+user.email+'</a> '+post.content+'<br>';
+					var str = '<a class="un-s" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+user.email+'">'+user.username+'</a> '+post.content+'<br>';
 					str += '<br><a class="time">'+postService.displayTime(post.regDate)+'</a>';
-					var str2 = '<a class="un-s username-p" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+user.email+'">'+user.email+'</a>';
+					var str2 = '<a class="un-s username-p" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+user.email+'">'+user.username+'</a>';
 					var time = postService.displayTime(post.regDate);
 					
 					$(".content").html(str);
