@@ -152,6 +152,8 @@ var userService = (function(){
 		getByEmail : getByEmail,
 		remove : remove,
 		update : update,
+		updatePwd : updatePwd,
+		checkPwd : checkPwd,
 		displayTime : displayTime
 		
 	};
