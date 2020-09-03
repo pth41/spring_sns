@@ -139,6 +139,7 @@ var postService = (function(){
 		getList : getList,
 		remove : remove,
 		update : update,
+		getCount : getCount,
 		displayTime : displayTime
 		
 	};
