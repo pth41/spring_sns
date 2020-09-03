@@ -125,6 +125,11 @@
 			$("#fade").css("display","none");
 		});
 		
+		$(document).on("click", ".menuBtn", function(e){
+			$("#light").css("display","block");
+			$("#fade").css("display","block");
+		});
+		
 		$(document).on("click", ".deletem", function(e){
 			var checkDelete = confirm("정말 삭제하시겠습니까?");
 			if(checkDelete){
@@ -418,10 +423,7 @@
             <div class="user">
                 <img class="profile_image" src="/resources/image/image_01.jpg" alt="404">
                 <div class="user_name">username</div>
-                <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
-                	<i class="fas fa-ellipsis-h menuBtn"></i>
-                </a>
-                
+                <i class="fas fa-ellipsis-h menuBtn"></i>     
             </div>
             <hr>
             <div class="content">
