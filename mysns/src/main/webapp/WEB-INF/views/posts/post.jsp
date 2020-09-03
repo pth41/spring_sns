@@ -45,6 +45,8 @@
 		var email = $(".container").find("input[name='email']").val(); //로그인 email
 		var userno = $(".container").find("input[name='user_no']").val(); //로그인 user_no
 		
+		var InputReplyDelete = $('.deleteR').find("[name = reply_no_d]"); //선택한 댓글 삭제하기 위한 reply_no을 받을 필드
+		
 		window.onload = function(){
 			postService.get(post_no, function(post){
 				var user_no = Number(post.user_no);
@@ -77,21 +79,19 @@
 					return;
 				}
 				
-            	let un = "";
-            	
 				for(var i=0, len=list.length||0; i<len; i++){
 					let user_no = Number(list[i].user_no);
                 	let em = list[i].email;
                 	let rc = list[i].reply_content;
                 	
-					cmstr += '<div class="divRc"><a class="un-s username-r'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+em+'">'+un+'</a> '+rc;
+					cmstr += '<div class="divRc"><a class="un-s username-r'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+em+'"></a> '+rc;
 					
 					if(user_no == userno){
-						cmstr += '<i class="fas fa-ellipsis-h menuR"></i>'+'<br>';
-					}else{
-						cmstr += '<br>';
+						cmstr += '<div class="fas fa-ellipsis-h menuR">';
+						cmstr += '<input type="hidden" name="reply_no" value='+list[i].reply_no+'></div>';
 					}
 					
+					cmstr += '<br>';
 					cmstr += '<a class="time">'+replyService.displayTime(list[i].regDate)+'</a></div><br>';
 				
 					let unDIV = ".username-r"+i;
@@ -141,6 +141,9 @@
 		$(document).on("click", ".menuR", function(e){
 			$("#lightR").css("display","block");
 			$("#fade").css("display","block");
+			
+			var replyno = $(this).find('[name=reply_no]').val();
+			InputReplyDelete.val(replyno);
 		});
 		
 		$(document).on("click", ".deletem", function(e){
@@ -150,6 +153,20 @@
 					alert("RESULT: " + result);
 					
 					location.href="/posts/main";
+				});
+			}
+		});
+		
+		$(document).on("click", ".deleteR", function(e){
+			var checkDelete = confirm("정말 삭제하시겠습니까?");
+			var rnstr = InputReplyDelete.val();
+			var reply_no = Number(rnstr);
+			
+			if(checkDelete){
+				replyService.remove(reply_no, function(result){
+					alert("RESULT: " + result);
+					
+					location.reload();
 				});
 			}
 		});
@@ -442,7 +459,10 @@
 </div>
 <div id="lightR" class="menu">
 	<br><br>
-   	<div class="deleteR">삭제</div><hr>
+   	<div class="deleteR">
+   		삭제
+   		<input type="hidden" name="reply_no_d" value=''>
+    </div><hr>
    	<div class="closem">취소</div>
 </div>
 <div class="container">
