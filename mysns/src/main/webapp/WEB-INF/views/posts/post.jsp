@@ -88,8 +88,15 @@
                 	let em = list[i].email;
                 	let rc = list[i].reply_content;
                 	
-					cmstr += '<a class="un-s username-r'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+em+'">'+un+'</a> '+rc+'<br>';
-					cmstr += '<a class="time">'+replyService.displayTime(list[i].regDate)+'</a><br><br>';
+					cmstr += '<div class="divRc"><a class="un-s username-r'+i+'" href="javascript:void(0)" onclick="goProfile(this);" data-email="'+em+'">'+un+'</a> '+rc;
+					
+					if(user_no == userno){
+						cmstr += '<i class="fas fa-ellipsis-h menuR"></i>'+'<br>';
+					}else{
+						cmstr += '<br>';
+					}
+					
+					cmstr += '<a class="time">'+replyService.displayTime(list[i].regDate)+'</a></div><br>';
 				
 					let unDIV = ".username-r"+i;
                 	userService.get(user_no, function(user){
@@ -137,10 +144,13 @@
 		$(document).on("click", ".deletem", function(e){
 			var checkDelete = confirm("정말 삭제하시겠습니까?");
 			if(checkDelete){
-				alert("삭제");
+				postService.remove(post_no, function(result){
+					alert("RESULT: " + result);
+					
+					location.href="/posts/main";
+				});
 			}
 		});
-		
 	});
 	
 	</script>
@@ -351,8 +361,17 @@
         }
         
         .menuBtn {
-        	margin-left: 14rem;
+        	margin-left: 13rem;
         	cursor: pointer;
+        }
+        
+        .menuR {
+        	margin-top: 0.5rem;
+        	margin-right: 4rem;
+        	float: right;
+        	cursor: pointer;
+        	color: silver;
+        	font-size: 0.7rem;
         }
         
         .menu {
