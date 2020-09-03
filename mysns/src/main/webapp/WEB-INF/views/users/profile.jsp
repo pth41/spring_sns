@@ -155,8 +155,8 @@
         </div>
         <div class="bio__stats">
             <span class="bio__posts stats">게시물 <strong class="post_count"></strong></span>
-            <span class="bio_followers stats">팔로워 <strong></strong></span>
-            <span class="bio__following stats">팔로잉 <strong></strong></span>
+            <span class="bio_followers stats">팔로워 <strong>0</strong></span>
+            <span class="bio__following stats">팔로잉 <strong>0</strong></span>
         </div>
         <div class="bio_blurb">
             <h2 class="bio__name" id="name"></h2>
