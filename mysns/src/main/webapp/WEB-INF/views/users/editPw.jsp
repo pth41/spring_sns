@@ -122,10 +122,12 @@
 					
 					userService.updatePwd(usernew, function(result){
 						alert("RESULT: " + result);
-						location.reload();
 					});
+				}else{
+					alert("다시 입력하세요.");
 				}
 				
+				location.reload();
 			});
 			
 		});
