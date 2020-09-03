@@ -176,12 +176,12 @@
         <h3>비밀번호 변경</h3>
         <input type="hidden" name="user_no" value='<sec:authentication property="principal.user.user_no"/>'>
         <form class="form-horizontal" role="form">
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label class="col-md-3 control-label">이전 비밀번호:</label>
             <div class="col-md-8">
               <input class="form-control" type="password" name="password" value=''>
             </div>
-          </div>
+          </div> -->
           <div class="form-group">
             <label class="col-md-3 control-label">새 비밀번호:</label>
             <div class="col-md-8">
