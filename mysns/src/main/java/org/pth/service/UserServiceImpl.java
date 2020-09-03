@@ -77,11 +77,19 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public boolean checkPwd(UserVO vo) {
+	public int checkPwd(UserVO vo) {
 		log.info("check pwd");
+		
+		int result = 0;
 		
 		UserVO encoded = mapper.read(vo.getUser_no()); 
 		
-		return pwencoder.matches(vo.getPassword(), encoded.getPassword());
+		boolean check = pwencoder.matches(vo.getPassword(), encoded.getPassword());
+		
+		if(check) {
+			result = 1;
+		}
+		
+		return result;
 	}
 }

@@ -83,9 +83,10 @@ public class UserController {
 	}
 	
 	@GetMapping(value = "/check",
+			consumes = "application/json",
 			produces = { MediaType.APPLICATION_XML_VALUE,
 						 MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<Boolean> checkPwd(@RequestBody UserVO vo) {
+	public ResponseEntity<Integer> checkPwd(@RequestBody UserVO vo) {
 		
 		return new ResponseEntity<>(service.checkPwd(vo), HttpStatus.OK);
 	}

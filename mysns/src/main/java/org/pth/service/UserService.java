@@ -15,5 +15,5 @@ public interface UserService {
 	
 	public int remove(Long user_no);
 	
-	public boolean checkPwd(UserVO vo);
+	public int checkPwd(UserVO vo);
 }
