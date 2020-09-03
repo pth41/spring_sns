@@ -327,10 +327,11 @@
         	  background-color: white;
         	  color: #042AaC;
         	  cursor: pointer;
+        	  font-weight: normal;
         }
         
         .replyBtn:hover {
-        	  font-weight: bolder;
+        	  font-weight: bold;
         }
         
         .time{
@@ -355,7 +356,7 @@
 			display: none;
 			position: absolute;
 			top: 32%;
-			left: 42%;
+			left: 43%;
 			width: 15%;
 			height: 24%;
 			padding: 16px;
