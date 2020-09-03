@@ -38,6 +38,7 @@
 				userService.getByEmail(email, function(user){
 					$("#username").html(user.username);
 					$("#name").html(user.name);
+					$(".bio__description").html(user.description);
 				});
 				
 				if(inputEmail.val() == email){
@@ -146,9 +147,9 @@
             
         </div>
         <div class="bio__stats">
-            <span class="bio__posts stats"><strong>5,097</strong> 포스트</span>
-            <span class="bio_followers stats"><strong>165m</strong> 팔로워</span>
-            <span class="bio__following stats"><strong>37</strong> 팔로잉</span>
+            <span class="bio__posts stats"><strong></strong> 게시물</span>
+            <span class="bio_followers stats"><strong></strong> 팔로워</span>
+            <span class="bio__following stats"><strong></strong> 팔로잉</span>
         </div>
         <div class="bio_blurb">
             <h2 class="bio__name" id="name"></h2>
@@ -179,9 +180,9 @@
     </nav>
     <nav class="mobile-stats">
         <ul>
-            <li class="mobile-stats__posts stats"><a href=""><strong>5,097</strong><br>posts</a></li>
-            <li class="mobile-stats_followers stats"><a href=""><strong>165M</strong><br>followers</a></li>
-            <li class="mobile-stats__following stats"><a href=""><strong>37</strong><br>following</a></li>
+            <li class="mobile-stats__posts stats"><a href=""><strong></strong><br>게시물</a></li>
+            <li class="mobile-stats_followers stats"><a href=""><strong></strong><br>팔로워</a></li>
+            <li class="mobile-stats__following stats"><a href=""><strong></strong><br>팔로잉</a></li>
         </ul>
     </nav>
     <section class="tabbed-pane">
