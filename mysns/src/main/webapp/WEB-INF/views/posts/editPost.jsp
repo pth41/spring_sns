@@ -57,6 +57,7 @@
 					return;
 				}else{
 					var post = {
+							post_no : post_no,
 							user_no : userno,
 							email : inputEmail.val(),
 							content : inputContent.val()
@@ -65,7 +66,7 @@
 					postService.update(post, function(result){
 						alert("RESULT: " + result);
 						
-						histroy.go(-1);
+						location.href='/posts/main';
 					});
 				}
 			});
@@ -184,7 +185,7 @@
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="button" id="registerBtn" class="btn btn-primary" value="등록">
+              <input type="button" id="registerBtn" class="btn btn-primary" value="수정">
               <span></span>
               <input type="reset" class="btn btn-default" value="취소">
             </div>
