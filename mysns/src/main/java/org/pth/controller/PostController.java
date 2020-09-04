@@ -114,7 +114,7 @@ public class PostController {
 			consumes = "application/json",
 			produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> modify(@RequestBody PostVO vo, @PathVariable("post_no") Long post_no) {
-		vo.setUser_no(post_no);
+		vo.setPost_no(post_no);
 		log.info("post_no: "+post_no);
 		log.info("post_modify: "+vo);
 		
