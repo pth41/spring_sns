@@ -3,6 +3,7 @@ package org.pth.controller;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +48,10 @@ public class UploadController {
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
 			
 			log.info("only file name: "+uploadFileName);
+			
+			UUID uuid = UUID.randomUUID();
+			
+			uploadFileName = uuid.toString() + "_" + uploadFileName;
 			
 			//File saveFile = new File(uploadFolder, uploadFileName);
 			File saveFile = new File(uploadPath, uploadFileName);
