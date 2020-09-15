@@ -84,8 +84,9 @@
 				$.ajax({
 					url: '/uploadAjaxAction',
 					processData: false,
-					contentType: false, data:
-					formData, type: 'Post',
+					contentType: false, 
+					data: formData,
+					type: 'POST',
 					dataType: 'json',
 					success: function(result){
 						console.log(result);
