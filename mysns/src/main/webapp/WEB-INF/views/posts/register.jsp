@@ -191,7 +191,28 @@
               width: 300px;
               border: 1px solid #efefef;
               margin: 1rem;
-          }
+        }
+        
+        .uploadResult {
+        	width:100%;
+        	background-color: gray;
+        }
+        
+        .uploadResult ul{
+        	display: flex;
+        	flex-flow: row;
+        	justify-content: conter;
+        	align-items: center;
+        }
+        
+        .uploadResult ul li {
+        	list-style: none;
+        	padding: 10px;
+        }
+        
+        .uploadResult ul li img {
+        	width: 20px;
+        }
     </style>
 </head>
 <header>
