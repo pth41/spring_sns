@@ -5,11 +5,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
+import org.pth.domain.PostAttachVO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.log4j.Log4j;
@@ -36,15 +43,16 @@ public class UploadController {
 		return false;
 	}
 	
-	@PostMapping("/uploadAjaxAction")
-	public void uploadAjaxPost(MultipartFile[] uploadFile) {
-		log.info("upload ajax post......");
+	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<PostAttachVO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 		
+		List<PostAttachVO> list = new ArrayList<>();
 		String uploadFolder = "C:\\upload";
 		
+		String uploadFolderPath = getFolder();
 		// make folder
-		File uploadPath = new File(uploadFolder, getFolder());
-		log.info("upload path: "+uploadPath);
+		File uploadPath = new File(uploadFolder, uploadFolderPath);
 		
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();
@@ -52,9 +60,7 @@ public class UploadController {
 		// make yyyy/MM/dd folder
 		
 		for(MultipartFile multipartFile : uploadFile) {
-			log.info("---------------------------");
-			log.info("Upload File Name: "+multipartFile.getOriginalFilename());
-			log.info("Upload File Size: "+multipartFile.getSize());
+			PostAttachVO attachVO = new PostAttachVO();
 			
 			String uploadFileName = multipartFile.getOriginalFilename();
 			
@@ -62,6 +68,7 @@ public class UploadController {
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
 			
 			log.info("only file name: "+uploadFileName);
+			attachVO.setFileName(uploadFileName);
 			
 			UUID uuid = UUID.randomUUID();
 			
@@ -70,15 +77,25 @@ public class UploadController {
 			try {
 				File saveFile = new File(uploadPath, uploadFileName);
 				multipartFile.transferTo(saveFile);
+				
+				attachVO.setUuid(uuid.toString());
+				attachVO.setUploadPath(uploadFolderPath);
+				
 				// check image type file
 				if(checkImageType(saveFile)) {
+					attachVO.setFileType(true);
+					
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" +uploadFileName));
 					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
 					thumbnail.close();
 				}
+				
+				// add to List
+				list.add(attachVO);
 			}catch(Exception e) {
 				log.error(e.getMessage());
 			} // end try
 		} // end for
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 }
