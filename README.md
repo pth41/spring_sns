@@ -28,7 +28,6 @@ DBCP : HikariCP
 - Bcrypt로 비밀번호 암호화
 - 로그인 및 권한 설정(스프링 시큐리티)
 - 포스트, 댓글 CRUD REST API
-- 파일 업로드 : 진행중
 - ajax 비동기처리
 - 프로필 확인 및 수정
 - CSRF 처리
