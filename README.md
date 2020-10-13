@@ -26,7 +26,7 @@ DBCP : HikariCP
 ## 2. 기능
 - 회원가입
 - Bcrypt로 비밀번호 암호화
-- 로그인 및 권한 설정(스프링 시큐리티)
+- 로그인 및 권한 설정(Spring Security)
 - 포스트, 댓글 CRUD REST API
 - ajax 비동기처리
 - 프로필 확인 및 수정
