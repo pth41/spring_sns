@@ -36,12 +36,28 @@ DBCP : HikariCP
 ## 3. 구현 화면
 
 회원가입  
+![회원가입](https://user-images.githubusercontent.com/37768443/95827400-a7571d80-0d6e-11eb-8ddb-0497a4a62898.PNG)
 
 로그인  
+![로그인](https://user-images.githubusercontent.com/37768443/95827412-ae7e2b80-0d6e-11eb-9f20-be8cce225b76.PNG)
 
 피드  
+![main](https://user-images.githubusercontent.com/37768443/95827470-bfc73800-0d6e-11eb-9e8f-e9c31fcdc12d.PNG)
+![main2](https://user-images.githubusercontent.com/37768443/95827477-c190fb80-0d6e-11eb-83c7-f8f10ea05250.PNG)
 
 포스트  
+![post1](https://user-images.githubusercontent.com/37768443/95827514-cbb2fa00-0d6e-11eb-8af9-7e9631ad02ad.PNG)
+![post2](https://user-images.githubusercontent.com/37768443/95827517-cd7cbd80-0d6e-11eb-9297-09b8b60b3d7f.PNG)
+![post3](https://user-images.githubusercontent.com/37768443/95827538-d2417180-0d6e-11eb-9887-d524d45c904d.PNG)
+![post4](https://user-images.githubusercontent.com/37768443/95827545-d40b3500-0d6e-11eb-9fd9-a6c7e776f22c.PNG)
+
+작성  
+![new post](https://user-images.githubusercontent.com/37768443/95827565-db324300-0d6e-11eb-9b4a-916d1f1d5167.PNG)
 
 프로필  
+![profile1](https://user-images.githubusercontent.com/37768443/95827586-e2595100-0d6e-11eb-914a-c9ce9fc0d363.PNG)
+
+프로필 수정  
+![profileEdit1](https://user-images.githubusercontent.com/37768443/95827611-e8e7c880-0d6e-11eb-8f0e-f445275b2d1c.PNG)
+![profileEdit2](https://user-images.githubusercontent.com/37768443/95827617-eab18c00-0d6e-11eb-9d91-ec649be3c47a.PNG)
 
